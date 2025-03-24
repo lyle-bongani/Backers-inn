@@ -422,18 +422,18 @@ const AboutPage = () => {
         />
         <HeroContent>
           <Title
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            Baking Joy for Zimbabwe Since 1982
+            Our Story
           </Title>
           <Subtitle
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Fresh, Wholesome, and Made with Pride
+            Baking Zimbabwe&apos;s finest bread since 1982
           </Subtitle>
         </HeroContent>
       </HeroSection>
@@ -442,252 +442,101 @@ const AboutPage = () => {
         <Container>
           <SectionTitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            Our Story
+            Our Mission
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Born in Harare in 1982, we've grown from a small family bakery into Zimbabwe's leading bread manufacturer
-          </SectionSubtitle>
-
-          <TimelineSection>
-            <TimelineItem
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <TimelineContent>
-                <h3>1982</h3>
-                <p>First Baker's Inn store opens in Harare</p>
-              </TimelineContent>
-              <TimelineDot />
-            </TimelineItem>
-            <TimelineItem
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <TimelineContent>
-                <h3>1990</h3>
-                <p>Expansion to major cities across Zimbabwe</p>
-              </TimelineContent>
-              <TimelineDot />
-            </TimelineItem>
-            <TimelineItem
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <TimelineContent>
-                <h3>2005</h3>
-                <p>Modern factory installation with state-of-the-art equipment</p>
-              </TimelineContent>
-              <TimelineDot />
-            </TimelineItem>
-            <TimelineItem
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <TimelineContent>
-                <h3>2020</h3>
-                <p>Reached milestone of 1 Million loaves baked daily</p>
-              </TimelineContent>
-              <TimelineDot />
-            </TimelineItem>
-          </TimelineSection>
-        </Container>
-      </Section>
-
-      <Section $alternate>
-        <Container>
-          <SectionTitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Why We Bake
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Nourishing Families with Affordable, Quality Bread
+            To provide Zimbabwe with the freshest, highest quality bread while supporting our local communities
           </SectionSubtitle>
 
           <ValuesGrid>
             <ValueCard
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <WheatIcon />
-              <h3>Freshness Guaranteed Daily</h3>
-              <p>Every loaf is baked fresh daily, ensuring you get the best quality bread for your family.</p>
+              <h3>Quality Ingredients</h3>
+              <p>We use only the finest local ingredients in our products</p>
             </ValueCard>
+
             <ValueCard
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <HeartIcon />
-              <h3>Supporting Local Farmers</h3>
-              <p>We partner with local wheat farmers to support our agricultural community.</p>
+              <h3>Community Support</h3>
+              <p>Supporting local farmers and communities across Zimbabwe</p>
             </ValueCard>
+
             <ValueCard
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <StarIcon />
-              <h3>Innovation in Every Bite</h3>
-              <p>Constantly improving our recipes and processes to deliver the best baking experience.</p>
+              <h3>Excellence</h3>
+              <p>Committed to delivering the best quality products</p>
             </ValueCard>
           </ValuesGrid>
         </Container>
       </Section>
 
-      <Section>
-        <Container>
-          <SectionTitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Our Products
-          </SectionTitle>
-          <SectionSubtitle
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Quality and variety to satisfy every taste
-          </SectionSubtitle>
-
-          <ProductsGrid>
-            <ProductCard
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="image-container">
-                <Image
-                  src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=2070&auto=format&fit=crop"
-                  alt="Sunshine Bread"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className="content">
-                <h3>Sunshine Bread</h3>
-                <p>Our signature soft and fresh white bread, perfect for any meal.</p>
-              </div>
-            </ProductCard>
-            <ProductCard
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="image-container">
-                <Image
-                  src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=2070&auto=format&fit=crop"
-                  alt="Snack Pies"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className="content">
-                <h3>Snack Pies</h3>
-                <p>Delicious savory pies made with premium ingredients.</p>
-              </div>
-            </ProductCard>
-            <ProductCard
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="image-container">
-              <Image
-                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2089&auto=format&fit=crop"
-                  alt="Celebration Cakes"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-              </div>
-              <div className="content">
-                <h3>Celebration Cakes</h3>
-                <p>Special occasion cakes that make every moment memorable.</p>
-              </div>
-            </ProductCard>
-          </ProductsGrid>
-        </Container>
-      </Section>
-
       <Section $alternate>
         <Container>
           <SectionTitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            Made in Zimbabwe, For Zimbabwe
+            Our Impact
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Supporting our local community through sustainable practices and employment
+            Making a difference in Zimbabwe&apos;s communities
           </SectionSubtitle>
 
-          <StatsGrid>
-            <StatCard
+          <ValuesGrid>
+            <ValueCard
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h3>500+</h3>
-              <p>Local Jobs Created</p>
-            </StatCard>
-            <StatCard
+              <LeafIcon />
+              <h3>Sustainability</h3>
+              <p>Committed to environmental responsibility</p>
+            </ValueCard>
+
+            <ValueCard
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h3>100%</h3>
-              <p>Local Wheat Used</p>
-            </StatCard>
-            <StatCard
+              <TeamIcon />
+              <h3>Employment</h3>
+              <p>Creating jobs across Zimbabwe</p>
+            </ValueCard>
+
+            <ValueCard
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <h3>50+</h3>
-              <p>School Programs</p>
-            </StatCard>
-            <StatCard
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <h3>1M+</h3>
-              <p>Lives Impacted</p>
-            </StatCard>
-          </StatsGrid>
+              <RecycleIcon />
+              <h3>Innovation</h3>
+              <p>Continuously improving our processes</p>
+            </ValueCard>
+          </ValuesGrid>
         </Container>
       </Section>
 
