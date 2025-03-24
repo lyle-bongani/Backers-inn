@@ -7,17 +7,17 @@ import {
   AccessTime,
   People,
   Restaurant,
-  LocalDining
+  LocalDining,
+  SetMealIcon,
+  ArrowBackIcon,
+  PrintIcon,
+  ShareIcon,
+  FavoriteIcon,
+  ListAltIcon,
+  HomeIcon
 } from '@mui/icons-material'
 import Link from 'next/link'
 import { useState } from 'react'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import PrintIcon from '@mui/icons-material/Print'
-import ShareIcon from '@mui/icons-material/Share'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import ListAltIcon from '@mui/icons-material/ListAlt'
-import HomeIcon from '@mui/icons-material/Home'
-import SetMealIcon from '@mui/icons-material/SetMeal'
 
 // Reuse all styled components from shwarma page
 const Container = styled.div`
@@ -357,7 +357,7 @@ const SalmonStripsPage = () => {
       <HeroSection>
         <HeroImage>
           <Image
-            src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?q=80&w=2070&auto=format&fit=crop"
             alt="Salmon Strips"
             fill
             style={{ objectFit: 'cover' }}
