@@ -1,16 +1,20 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import styled from 'styled-components'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { 
+  AccessTime,
+  People,
+  Restaurant,
+  LocalDining
+} from '@mui/icons-material'
+import Link from 'next/link'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import PeopleIcon from '@mui/icons-material/People'
 import PrintIcon from '@mui/icons-material/Print'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import RestaurantIcon from '@mui/icons-material/Restaurant'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
 import SetMealIcon from '@mui/icons-material/SetMeal'
@@ -331,7 +335,9 @@ const ActionButton = styled.button`
   }
 `
 
-const RecipeDetail = () => {
+const SalmonStripsPage = () => {
+  const [imageError, setImageError] = useState(false);
+
   const handlePrint = () => {
     window.print();
   };
@@ -351,12 +357,35 @@ const RecipeDetail = () => {
       <HeroSection>
         <HeroImage>
           <Image
-            src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?q=80&w=2070&auto=format&fit=crop"
             alt="Salmon Strips"
             fill
             style={{ objectFit: 'cover' }}
             priority
+            quality={90}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+            onError={(e) => {
+              console.error('Image failed to load:', e);
+              setImageError(true);
+            }}
           />
+          {imageError && (
+            <div style={{ 
+              position: 'absolute', 
+              top: 0, 
+              left: 0, 
+              right: 0, 
+              bottom: 0, 
+              background: '#2B1B58',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              fontSize: '1.5rem'
+            }}>
+              Image not available
+            </div>
+          )}
         </HeroImage>
         <ButtonGroup>
           <NavButton href="/">
@@ -370,14 +399,14 @@ const RecipeDetail = () => {
 
       <ContentWrapper>
         <RecipeHeader>
-          <Title>Salmon Strips</Title>
+          <Title>Crispy Salmon Strips</Title>
           <Description>
-            Delicious and healthy salmon strips, perfectly seasoned and grilled to perfection. A family favorite that's both nutritious and easy to prepare!
+            A delicious and healthy recipe using Baker&apos;s Inn bread
           </Description>
           <Stats>
             <StatItem>
               <StatIcon>
-                <AccessTimeIcon />
+                <AccessTime />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Prep Time</StatLabel>
@@ -386,7 +415,7 @@ const RecipeDetail = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <PeopleIcon />
+                <People />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Serves</StatLabel>
@@ -411,46 +440,61 @@ const RecipeDetail = () => {
               <ListAltIcon /> Ingredients
             </SectionTitle>
             <IngredientsList>
-              <IngredientItem>½ cup olive oil</IngredientItem>
-              <IngredientItem>½ cup ranch dressing</IngredientItem>
-              <IngredientItem>3 tablespoons Worcestershire sauce</IngredientItem>
-              <IngredientItem>1 tablespoon minced fresh rosemary</IngredientItem>
-              <IngredientItem>2 teaspoons salt</IngredientItem>
-              <IngredientItem>1 teaspoon lemon juice</IngredientItem>
-              <IngredientItem>1 teaspoon white vinegar</IngredientItem>
-              <IngredientItem>¼ teaspoon ground black pepper</IngredientItem>
+              <IngredientItem>4 slices Baker&apos;s Inn bread</IngredientItem>
+              <IngredientItem>500g fresh salmon</IngredientItem>
+              <IngredientItem>2 eggs</IngredientItem>
+              <IngredientItem>1 cup breadcrumbs</IngredientItem>
+              <IngredientItem>Salt and pepper to taste</IngredientItem>
             </IngredientsList>
           </Section>
 
           <Section>
             <SectionTitle>
-              <RestaurantIcon /> Directions
+              <Restaurant /> Directions
             </SectionTitle>
             <StepsList>
               <StepItem>
                 <StepNumber>1</StepNumber>
                 <StepContent>
-                  <StepTitle>Prepare the Marinade</StepTitle>
+                  <StepTitle>Cut the salmon into strips</StepTitle>
                   <StepDescription>
-                    In a medium bowl, stir together the olive oil, ranch dressing, Worcestershire sauce, rosemary, salt, lemon juice, white vinegar, pepper, and sugar. Let stand for 5 minutes. Place chicken in the bowl, and stir to coat with the marinade. Cover and refrigerate for 30 minutes.
+                    Cut the salmon into strips
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>2</StepNumber>
                 <StepContent>
-                  <StepTitle>Prepare for Grilling</StepTitle>
+                  <StepTitle>Dip in beaten eggs</StepTitle>
                   <StepDescription>
-                    Preheat the grill for medium-high heat. Thread chicken onto skewers and discard marinade.
+                    Dip in beaten eggs
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>3</StepNumber>
                 <StepContent>
-                  <StepTitle>Grill the Salmon</StepTitle>
+                  <StepTitle>Coat with breadcrumbs</StepTitle>
                   <StepDescription>
-                    Lightly oil the grill grate. Grill skewers for 8 to 12 minutes, or until the chicken is no longer pink in the center, and the juices run clear.
+                    Coat with breadcrumbs
+                  </StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepItem>
+                <StepNumber>4</StepNumber>
+                <StepContent>
+                  <StepTitle>Fry until golden brown</StepTitle>
+                  <StepDescription>
+                    Fry until golden brown
+                  </StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepItem>
+                <StepNumber>5</StepNumber>
+                <StepContent>
+                  <StepTitle>Serve with your favorite sauce</StepTitle>
+                  <StepDescription>
+                    Serve with your favorite sauce
                   </StepDescription>
                 </StepContent>
               </StepItem>
@@ -474,4 +518,4 @@ const RecipeDetail = () => {
   )
 }
 
-export default RecipeDetail 
+export default SalmonStripsPage 

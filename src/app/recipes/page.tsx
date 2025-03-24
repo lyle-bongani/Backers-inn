@@ -18,8 +18,10 @@ import {
   Facebook,
   Instagram,
   ExpandMore,
-  Close
+  Close,
+  Restaurant
 } from '@mui/icons-material'
+import { motion } from 'framer-motion'
 
 const RecipesContainer = styled.div`
   min-height: 100vh;

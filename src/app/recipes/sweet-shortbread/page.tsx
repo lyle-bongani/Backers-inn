@@ -1,19 +1,23 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import styled from 'styled-components'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { 
+  AccessTime,
+  People,
+  Restaurant,
+  LocalDining
+} from '@mui/icons-material'
+import Link from 'next/link'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import PeopleIcon from '@mui/icons-material/People'
 import PrintIcon from '@mui/icons-material/Print'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import RestaurantIcon from '@mui/icons-material/Restaurant'
-import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
 import CakeIcon from '@mui/icons-material/Cake'
+import ListAltIcon from '@mui/icons-material/ListAlt'
 
 // Reuse all styled components from shwarma page
 const Container = styled.div`
@@ -113,6 +117,18 @@ const Title = styled.h1`
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
+  }
+`
+
+const Subtitle = styled.h2`
+  color: #2B1B58;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
   }
 `
 
@@ -331,7 +347,43 @@ const ActionButton = styled.button`
   }
 `
 
-const RecipeDetail = () => {
+const RecipeContent = styled.div`
+  display: flex;
+  gap: 2rem;
+
+  .image-container {
+    flex: 1;
+    position: relative;
+    height: 300px;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .content {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  h2 {
+    color: #2B1B58;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  ul, ol {
+    margin-left: 20px;
+    margin-bottom: 2rem;
+  }
+
+  li {
+    color: #666666;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+`
+
+const SweetShortbreadPage = () => {
   const handlePrint = () => {
     window.print();
   };
@@ -351,11 +403,10 @@ const RecipeDetail = () => {
       <HeroSection>
         <HeroImage>
           <Image
-            src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=2065&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2089&auto=format&fit=crop"
             alt="Sweet Shortbread"
             fill
             style={{ objectFit: 'cover' }}
-            priority
           />
         </HeroImage>
         <ButtonGroup>
@@ -371,13 +422,14 @@ const RecipeDetail = () => {
       <ContentWrapper>
         <RecipeHeader>
           <Title>Sweet Shortbread</Title>
+          <Subtitle>A classic Scottish treat using Baker&apos;s Inn flour</Subtitle>
           <Description>
             A classic buttery shortbread cookie that melts in your mouth. Perfect for tea time or as a sweet treat any time of day!
           </Description>
           <Stats>
             <StatItem>
               <StatIcon>
-                <AccessTimeIcon />
+                <AccessTime />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Prep Time</StatLabel>
@@ -386,7 +438,7 @@ const RecipeDetail = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <PeopleIcon />
+                <People />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Serves</StatLabel>
@@ -411,46 +463,61 @@ const RecipeDetail = () => {
               <ListAltIcon /> Ingredients
             </SectionTitle>
             <IngredientsList>
-              <IngredientItem>½ cup olive oil</IngredientItem>
-              <IngredientItem>½ cup ranch dressing</IngredientItem>
-              <IngredientItem>3 tablespoons Worcestershire sauce</IngredientItem>
-              <IngredientItem>1 tablespoon minced fresh rosemary</IngredientItem>
-              <IngredientItem>2 teaspoons salt</IngredientItem>
-              <IngredientItem>1 teaspoon lemon juice</IngredientItem>
-              <IngredientItem>1 teaspoon white vinegar</IngredientItem>
-              <IngredientItem>¼ teaspoon ground black pepper</IngredientItem>
+              <IngredientItem>2 cups Baker&apos;s Inn flour</IngredientItem>
+              <IngredientItem>1 cup butter</IngredientItem>
+              <IngredientItem>½ cup sugar</IngredientItem>
+              <IngredientItem>1 teaspoon vanilla extract</IngredientItem>
+              <IngredientItem>Pinch of salt</IngredientItem>
             </IngredientsList>
           </Section>
 
           <Section>
             <SectionTitle>
-              <RestaurantIcon /> Directions
+              <Restaurant /> Directions
             </SectionTitle>
             <StepsList>
               <StepItem>
                 <StepNumber>1</StepNumber>
                 <StepContent>
-                  <StepTitle>Prepare the Mixture</StepTitle>
+                  <StepTitle>Mix butter and sugar</StepTitle>
                   <StepDescription>
-                    In a medium bowl, stir together the olive oil, ranch dressing, Worcestershire sauce, rosemary, salt, lemon juice, white vinegar, pepper, and sugar. Let stand for 5 minutes. Place chicken in the bowl, and stir to coat with the marinade. Cover and refrigerate for 30 minutes.
+                    In a medium bowl, mix butter and sugar until well combined.
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>2</StepNumber>
                 <StepContent>
-                  <StepTitle>Prepare for Baking</StepTitle>
+                  <StepTitle>Add flour and vanilla</StepTitle>
                   <StepDescription>
-                    Preheat the grill for medium-high heat. Thread chicken onto skewers and discard marinade.
+                    Add the flour and vanilla to the bowl and mix until a dough forms.
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>3</StepNumber>
                 <StepContent>
-                  <StepTitle>Bake to Perfection</StepTitle>
+                  <StepTitle>Knead the dough</StepTitle>
                   <StepDescription>
-                    Lightly oil the grill grate. Grill skewers for 8 to 12 minutes, or until the chicken is no longer pink in the center, and the juices run clear.
+                    Knead the dough until it's smooth and elastic.
+                  </StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepItem>
+                <StepNumber>4</StepNumber>
+                <StepContent>
+                  <StepTitle>Shape and bake</StepTitle>
+                  <StepDescription>
+                    Shape the dough into desired shapes and bake in a preheated oven at 350°F for 10-15 minutes.
+                  </StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepItem>
+                <StepNumber>5</StepNumber>
+                <StepContent>
+                  <StepTitle>Cool and serve</StepTitle>
+                  <StepDescription>
+                    Allow the shortbread to cool completely before serving.
                   </StepDescription>
                 </StepContent>
               </StepItem>
@@ -474,4 +541,4 @@ const RecipeDetail = () => {
   )
 }
 
-export default RecipeDetail 
+export default SweetShortbreadPage 

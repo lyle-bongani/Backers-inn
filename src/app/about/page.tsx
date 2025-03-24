@@ -133,7 +133,7 @@ const TimelineSection = styled.div`
   }
 `
 
-const TimelineItem = styled(motion.div)`
+const TimelineItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -415,7 +415,7 @@ const AboutPage = () => {
         <HeroBackground />
         <Image
           src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
-          alt="Baker's Inn Hero"
+          alt="Baker&apos;s Inn Hero"
           fill
           style={{ objectFit: 'cover' }}
           priority
@@ -544,15 +544,15 @@ const AboutPage = () => {
         <Container>
           <SectionTitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            The Baker's Inn Family
+            The Baker&apos;s Inn Family
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Meet the passionate people behind your daily bread
           </SectionSubtitle>
@@ -560,8 +560,8 @@ const AboutPage = () => {
           <TeamGrid>
             <TeamMember
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="image-container">
                 <Image
@@ -576,9 +576,8 @@ const AboutPage = () => {
             </TeamMember>
             <TeamMember
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="image-container">
                 <Image
@@ -593,9 +592,8 @@ const AboutPage = () => {
             </TeamMember>
             <TeamMember
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <div className="image-container">
                 <Image
@@ -610,9 +608,8 @@ const AboutPage = () => {
             </TeamMember>
             <TeamMember
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <div className="image-container">
                 <Image
@@ -633,15 +630,15 @@ const AboutPage = () => {
         <Container>
           <SectionTitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
             Customer Love
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             What our community says about us
           </SectionSubtitle>
@@ -649,10 +646,10 @@ const AboutPage = () => {
           <TestimonialGrid>
             <TestimonialCard
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <p>"Baker's Inn bread has been my family's daily bread for over 10 years. The quality never disappoints!"</p>
+              <p>&quot;Baker&apos;s Inn bread has been my family&apos;s daily bread for over 10 years. The quality never disappoints!&quot;</p>
               <div className="author">
                 <div className="image">
                   <Image
@@ -670,11 +667,10 @@ const AboutPage = () => {
             </TestimonialCard>
             <TestimonialCard
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <p>"As a restaurant owner, I trust Baker's Inn for consistent quality and reliable delivery. They're the best!"</p>
+              <p>&quot;As a restaurant owner, I trust Baker&apos;s Inn for consistent quality and reliable delivery. They&apos;re the best!&quot;</p>
               <div className="author">
                 <div className="image">
                   <Image
@@ -692,19 +688,18 @@ const AboutPage = () => {
             </TestimonialCard>
             <TestimonialCard
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <p>"Their commitment to quality and community support makes them more than just a bakery - they're family!"</p>
+              <p>&quot;Their commitment to quality and community support makes them more than just a bakery - they&apos;re family!&quot;</p>
               <div className="author">
                 <div className="image">
-              <Image
+                  <Image
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2070&auto=format&fit=crop"
                     alt="Customer"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
                 <div className="info">
                   <h4>Ruth Makoni</h4>
@@ -720,15 +715,15 @@ const AboutPage = () => {
         <Container>
           <SectionTitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
             Sustainability Promise
           </SectionTitle>
           <SectionSubtitle
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Building a better future for Zimbabwe
           </SectionSubtitle>
@@ -736,8 +731,7 @@ const AboutPage = () => {
           <ValuesGrid>
             <ValueCard
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <RecycleIcon />
@@ -746,8 +740,7 @@ const AboutPage = () => {
             </ValueCard>
             <ValueCard
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <LeafIcon />
@@ -756,8 +749,7 @@ const AboutPage = () => {
             </ValueCard>
             <ValueCard
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <TeamIcon />

@@ -1,16 +1,20 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import styled from 'styled-components'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { 
+  AccessTime,
+  People,
+  Restaurant,
+  LocalDining
+} from '@mui/icons-material'
+import Link from 'next/link'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import PeopleIcon from '@mui/icons-material/People'
 import PrintIcon from '@mui/icons-material/Print'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import RestaurantIcon from '@mui/icons-material/Restaurant'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
 
@@ -114,7 +118,7 @@ const Title = styled.h1`
   }
 `
 
-const Description = styled.p`
+const Subtitle = styled.h2`
   color: #666666;
   font-size: 1.25rem;
   line-height: 1.6;
@@ -329,7 +333,55 @@ const ActionButton = styled.button`
   }
 `
 
-const RecipeDetail = () => {
+const RecipeContent = styled.div`
+  display: flex;
+  gap: 2rem;
+
+  .image-container {
+    flex: 1;
+    position: relative;
+    height: 100%;
+  }
+
+  .content {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  h2 {
+    color: #2B1B58;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  ul, ol {
+    margin-left: 20px;
+    margin-bottom: 2rem;
+  }
+
+  li {
+    color: #666666;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+`
+
+const HeroContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+`
+
+const ShwarmaSandwichPage = () => {
   const handlePrint = () => {
     window.print();
   };
@@ -349,11 +401,10 @@ const RecipeDetail = () => {
       <HeroSection>
         <HeroImage>
           <Image
-            src="https://images.unsplash.com/photo-1542444256-9dd3e45c9b81?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=2070&auto=format&fit=crop"
             alt="Shwarma Sandwich"
             fill
             style={{ objectFit: 'cover' }}
-            priority
           />
         </HeroImage>
         <ButtonGroup>
@@ -364,18 +415,20 @@ const RecipeDetail = () => {
             <ArrowBackIcon /> Back to Recipes
           </NavButton>
         </ButtonGroup>
+        <HeroContent>
+          <Title>Shwarma Sandwich</Title>
+          <Subtitle>A delicious Middle Eastern sandwich using Baker&apos;s Inn bread</Subtitle>
+        </HeroContent>
       </HeroSection>
 
       <ContentWrapper>
         <RecipeHeader>
           <Title>Shwarma Sandwich</Title>
-          <Description>
-            A delicious Middle Eastern sandwich filled with marinated grilled chicken and fresh vegetables. Perfect for lunch or dinner!
-          </Description>
+          <Subtitle>A delicious Middle Eastern sandwich using Baker&apos;s Inn bread</Subtitle>
           <Stats>
             <StatItem>
               <StatIcon>
-                <AccessTimeIcon />
+                <AccessTime />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Prep Time</StatLabel>
@@ -384,7 +437,7 @@ const RecipeDetail = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <PeopleIcon />
+                <People />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Serves</StatLabel>
@@ -393,7 +446,7 @@ const RecipeDetail = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <RestaurantIcon />
+                <Restaurant />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Cuisine</StatLabel>
@@ -409,26 +462,23 @@ const RecipeDetail = () => {
               <ListAltIcon /> Ingredients
             </SectionTitle>
             <IngredientsList>
-              <IngredientItem>½ cup olive oil</IngredientItem>
-              <IngredientItem>½ cup ranch dressing</IngredientItem>
-              <IngredientItem>3 tablespoons Worcestershire sauce</IngredientItem>
-              <IngredientItem>1 tablespoon minced fresh rosemary</IngredientItem>
-              <IngredientItem>2 teaspoons salt</IngredientItem>
-              <IngredientItem>1 teaspoon lemon juice</IngredientItem>
-              <IngredientItem>1 teaspoon white vinegar</IngredientItem>
-              <IngredientItem>¼ teaspoon ground black pepper</IngredientItem>
+              <IngredientItem>2 slices Baker&apos;s Inn bread</IngredientItem>
+              <IngredientItem>300g chicken shwarma</IngredientItem>
+              <IngredientItem>1 cup mixed vegetables</IngredientItem>
+              <IngredientItem>2 tablespoons sauce</IngredientItem>
+              <IngredientItem>Salt and pepper to taste</IngredientItem>
             </IngredientsList>
           </Section>
 
           <Section>
             <SectionTitle>
-              <RestaurantIcon /> Directions
+              <Restaurant /> Directions
             </SectionTitle>
             <StepsList>
               <StepItem>
                 <StepNumber>1</StepNumber>
                 <StepContent>
-                  <StepTitle>Prepare the Marinade</StepTitle>
+                  <StepTitle>Prepare the chicken shwarma</StepTitle>
                   <StepDescription>
                     In a medium bowl, stir together the olive oil, ranch dressing, Worcestershire sauce, rosemary, salt, lemon juice, white vinegar, pepper, and sugar. Let stand for 5 minutes. Place chicken in the bowl, and stir to coat with the marinade. Cover and refrigerate for 30 minutes.
                   </StepDescription>
@@ -437,7 +487,7 @@ const RecipeDetail = () => {
               <StepItem>
                 <StepNumber>2</StepNumber>
                 <StepContent>
-                  <StepTitle>Prepare for Grilling</StepTitle>
+                  <StepTitle>Toast the bread</StepTitle>
                   <StepDescription>
                     Preheat the grill for medium-high heat. Thread chicken onto skewers and discard marinade.
                   </StepDescription>
@@ -446,7 +496,25 @@ const RecipeDetail = () => {
               <StepItem>
                 <StepNumber>3</StepNumber>
                 <StepContent>
-                  <StepTitle>Grill the Chicken</StepTitle>
+                  <StepTitle>Add vegetables and sauce</StepTitle>
+                  <StepDescription>
+                    Lightly oil the grill grate. Grill skewers for 8 to 12 minutes, or until the chicken is no longer pink in the center, and the juices run clear.
+                  </StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepItem>
+                <StepNumber>4</StepNumber>
+                <StepContent>
+                  <StepTitle>Assemble the sandwich</StepTitle>
+                  <StepDescription>
+                    Lightly oil the grill grate. Grill skewers for 8 to 12 minutes, or until the chicken is no longer pink in the center, and the juices run clear.
+                  </StepDescription>
+                </StepContent>
+              </StepItem>
+              <StepItem>
+                <StepNumber>5</StepNumber>
+                <StepContent>
+                  <StepTitle>Serve hot</StepTitle>
                   <StepDescription>
                     Lightly oil the grill grate. Grill skewers for 8 to 12 minutes, or until the chicken is no longer pink in the center, and the juices run clear.
                   </StepDescription>
@@ -472,4 +540,4 @@ const RecipeDetail = () => {
   )
 }
 
-export default RecipeDetail 
+export default ShwarmaSandwichPage 
