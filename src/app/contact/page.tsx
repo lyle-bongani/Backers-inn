@@ -2,115 +2,179 @@
 
 import styled from 'styled-components'
 import { useState } from 'react'
+import { 
+  Phone,
+  WhatsApp,
+  Email,
+  AccessTime,
+  Business,
+  ShoppingCart,
+  LocationOn,
+  Send,
+  Facebook,
+  Instagram,
+  Twitter,
+  LinkedIn,
+  Help,
+  Work,
+  Newspaper,
+  VolunteerActivism,
+  CheckCircle,
+  ArrowForward
+} from '@mui/icons-material'
 
 const ContactContainer = styled.div`
   min-height: 100vh;
+  background: #FAF7F2;
 `
 
 const HeroSection = styled.div`
-  background: #2B1B58;
+  background: linear-gradient(rgba(43, 27, 88, 0.8), rgba(43, 27, 88, 0.8)),
+              url('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
   color: white;
-  padding: 4rem 0;
+  padding: 6rem 0;
   text-align: center;
+  position: relative;
 `
 
 const Container = styled.div`
-  max-width: 1200px;
+  width: 95%;
+  max-width: 95%;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0;
+  position: relative;
+  z-index: 2;
 `
 
 const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 1rem;
+  font-weight: 800;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `
 
 const Subtitle = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   max-width: 800px;
   margin: 0 auto;
   opacity: 0.9;
+  line-height: 1.6;
 `
 
-const ContactSection = styled.div`
+const Section = styled.section`
   padding: 4rem 0;
+  background: white;
+  margin-bottom: 2rem;
+  width: 100%;
+`
+
+const SectionContent = styled.div`
+  width: 95%;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+`
+
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #2B1B58;
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  svg {
+    color: #C19A5B;
+  }
 `
 
 const ContactGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
+`
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+const ContactCard = styled.div<{ $bgImage?: string }>`
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background-image: ${props => props.$bgImage ? `url(${props.$bgImage})` : 'none'};
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
   }
 `
 
-const ContactInfo = styled.div`
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #2B1B58;
-  }
-`
+const CardTitle = styled.h3`
+  font-size: 1.5rem;
+  color: #2B1B58;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
-const ContactDetails = styled.div`
-  margin-bottom: 2rem;
+  svg {
+    color: #C19A5B;
+  }
 `
 
 const ContactItem = styled.div`
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
-  
-  svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 1rem;
-    color: #2B1B58;
-  }
-
-  div {
-    h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: #2B1B58;
-    }
-
-    p {
-      color: #666;
-      line-height: 1.5;
-    }
-  }
-`
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-`
-
-const SocialIcon = styled.a`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #2B1B58;
-  color: white;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  color: #666;
+  font-size: 1.1rem;
+
+  svg {
+    color: #2B1B58;
+    font-size: 1.4rem;
+  }
+`
+
+const Button = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #C19A5B;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  margin-top: 1rem;
   transition: all 0.3s ease;
 
   &:hover {
+    background: #A88347;
     transform: translateY(-2px);
-    background: #3C2C69;
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
   }
 `
 
@@ -118,7 +182,7 @@ const Form = styled.form`
   background: white;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 `
 
 const FormGroup = styled.div`
@@ -131,7 +195,7 @@ const FormGroup = styled.div`
     font-weight: 500;
   }
 
-  input, textarea {
+  input, textarea, select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
@@ -152,6 +216,14 @@ const FormGroup = styled.div`
   }
 `
 
+const CheckboxGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  color: #666;
+`
+
 const SubmitButton = styled.button`
   background: #2B1B58;
   color: white;
@@ -162,6 +234,10 @@ const SubmitButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   &:hover {
     background: #3C2C69;
@@ -173,30 +249,169 @@ const SubmitButton = styled.button`
   }
 `
 
-const SuccessMessage = styled.div`
-  background: #4CAF50;
-  color: white;
-  padding: 1rem;
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+`
+
+const SocialIcon = styled.a`
+  color: #2B1B58;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #C19A5B;
+    transform: translateY(-2px);
+  }
+`
+
+const FAQGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+`
+
+const FAQItem = styled.div`
+  background: white;
+  padding: 1.5rem;
   border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+`
+
+const ProcessStep = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
-  text-align: center;
+  color: #666;
+
+  svg {
+    color: #C19A5B;
+  }
+`
+
+const MobileCallButton = styled.a`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #C19A5B;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    background: #A88347;
+  }
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`
+
+const MapFormContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 4rem auto;
+  width: 95%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`
+
+const MapSection = styled.div`
+  height: 600px;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+`
+
+const MapIframe = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
+`
+
+const ContactDetails = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 2rem;
+  background: #FAF7F2;
+  padding: 3rem;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+`
+
+const ContactGroup = styled.div`
+  h3 {
+    color: #2B1B58;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+`
+
+const ThreeColumnGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
-    message: ''
+    message: '',
+    consent: false
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target as HTMLInputElement
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }))
   }
 
@@ -212,11 +427,12 @@ const ContactPage = () => {
     setFormData({
       name: '',
       email: '',
+      phone: '',
       subject: '',
-      message: ''
+      message: '',
+      consent: false
     })
 
-    // Hide success message after 3 seconds
     setTimeout(() => setShowSuccess(false), 3000)
   }
 
@@ -224,81 +440,114 @@ const ContactPage = () => {
     <ContactContainer>
       <HeroSection>
         <Container>
-          <Title>Contact Us</Title>
-          <Subtitle>
-            Have questions or feedback? We'd love to hear from you. 
-            Get in touch with our team and we'll respond as soon as possible.
-          </Subtitle>
+          <Title>We're Here to Hear from You!</Title>
+          <Subtitle>Whether you're a customer, partner, or future franchisee—let's connect!</Subtitle>
         </Container>
       </HeroSection>
 
-      <ContactSection>
-        <Container>
+      <Container>
+        <Section>
+          <SectionTitle>
+            <Phone /> Contact Options
+          </SectionTitle>
           <ContactGrid>
-            <ContactInfo>
-              <h2>Get in Touch</h2>
-              
-              <ContactDetails>
+            <ContactCard $bgImage="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2070&auto=format&fit=crop">
+              <CardTitle>
+                <Phone /> Customer Care
+              </CardTitle>
+              <ContactItem>
+                <Phone /> +263 XXX XXX XXX
+              </ContactItem>
+              <ContactItem>
+                <WhatsApp /> Chat with Us
+              </ContactItem>
+              <ContactItem>
+                <Email /> care@bakersinn.co.zw
+              </ContactItem>
+              <ContactItem>
+                <AccessTime /> Mon–Sat: 8 AM – 5 PM CAT
+              </ContactItem>
+            </ContactCard>
+
+            <ContactCard $bgImage="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2070&auto=format&fit=crop">
+              <CardTitle>
+                <Business /> Franchise Inquiries
+              </CardTitle>
+              <ContactItem>
+                <Email /> franchise@bakersinn.co.zw
+              </ContactItem>
+              <Button href="#">
+                <ArrowForward /> Download Franchise Kit PDF
+              </Button>
+            </ContactCard>
+
+            <ContactCard $bgImage="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop">
+              <CardTitle>
+                <ShoppingCart /> Wholesale & Bulk Orders
+              </CardTitle>
+              <ContactItem>
+                <Phone /> +263 XXX XXX XXX
+              </ContactItem>
+              <Button href="#">
+                <ArrowForward /> Request a Quote
+              </Button>
+            </ContactCard>
+          </ContactGrid>
+        </Section>
+
+        <Section>
+          <SectionTitle>
+            <LocationOn /> Office Locations
+          </SectionTitle>
+          <SectionContent>
+            <ContactDetails>
+              <ContactGroup>
+                <h3>Address</h3>
                 <ContactItem>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <div>
-                    <h3>Visit Us</h3>
-                    <p>1 Shepperton Road, Graniteside<br />Harare, Zimbabwe</p>
-                  </div>
+                  <LocationOn /> 1 Sheperton Road,
                 </ContactItem>
-
                 <ContactItem>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <div>
-                    <h3>Email Us</h3>
-                    <p>info@bakersinnzw.com<br />support@bakersinnzw.com</p>
-                  </div>
+                  <LocationOn /> Graniteside,
                 </ContactItem>
-
                 <ContactItem>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <div>
-                    <h3>Call Us</h3>
-                    <p>Tel: +263-242-751481-5<br />Toll Free: 08080151</p>
-                  </div>
+                  <LocationOn /> Harare,
                 </ContactItem>
-              </ContactDetails>
-
-              <SocialLinks>
-                <SocialIcon href="https://facebook.com" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                  </svg>
-                </SocialIcon>
-                <SocialIcon href="https://twitter.com" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-                  </svg>
-                </SocialIcon>
-                <SocialIcon href="https://instagram.com" target="_blank">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
-                  </svg>
-                </SocialIcon>
-              </SocialLinks>
-            </ContactInfo>
-
+                <ContactItem>
+                  <LocationOn /> Zimbabwe
+                </ContactItem>
+              </ContactGroup>
+              <ContactGroup>
+                <h3>Get In Touch With Us</h3>
+                <ContactItem>
+                  <Phone /> 08080151
+                </ContactItem>
+                <ContactItem>
+                  <Phone /> 08080152
+                </ContactItem>
+                <ContactItem>
+                  <Phone /> +263 242 751 481
+                </ContactItem>
+                <ContactItem>
+                  <Phone /> +263 242 710 334
+                </ContactItem>
+                <ContactItem>
+                  <Email /> marketing@bakersinnzim.com
+                </ContactItem>
+              </ContactGroup>
+            </ContactDetails>
+          </SectionContent>
+          <MapFormContainer>
+            <MapSection>
+              <MapIframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.1573754627357!2d31.054558800000006!3d-17.831256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a4e7c49320df%3A0xf4d0636a76f07272!2sBakers%20Inn%20105%20R%20G%20Mugabe!5e0!3m2!1sen!2szw!4v1742568522606!5m2!1sen!2szw"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </MapSection>
             <Form onSubmit={handleSubmit}>
-              {showSuccess && (
-                <SuccessMessage>
-                  Thank you for your message! We'll get back to you soon.
-                </SuccessMessage>
-              )}
-              
               <FormGroup>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">Name*</label>
                 <input
                   type="text"
                   id="name"
@@ -310,7 +559,7 @@ const ContactPage = () => {
               </FormGroup>
 
               <FormGroup>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email*</label>
                 <input
                   type="email"
                   id="email"
@@ -322,19 +571,35 @@ const ContactPage = () => {
               </FormGroup>
 
               <FormGroup>
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="phone">Phone</label>
                 <input
-                  type="text"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <label htmlFor="subject">Subject*</label>
+                <select
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                />
+                >
+                  <option value="">Select a subject</option>
+                  <option value="product-feedback">Product Feedback</option>
+                  <option value="complaint">Complaint</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="other">Other</option>
+                </select>
               </FormGroup>
 
               <FormGroup>
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">Message*</label>
                 <textarea
                   id="message"
                   name="message"
@@ -344,13 +609,142 @@ const ContactPage = () => {
                 />
               </FormGroup>
 
+              <CheckboxGroup>
+                <input
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  checked={formData.consent}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="consent">I agree to Bakers Inn's Privacy Policy</label>
+              </CheckboxGroup>
+
               <SubmitButton type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? 'Sending...' : 'Send →'}
               </SubmitButton>
             </Form>
-          </ContactGrid>
-        </Container>
-      </ContactSection>
+          </MapFormContainer>
+          <SectionContent>
+            <ContactItem>
+              <AccessTime /> Walk-ins welcome at our head office Mon–Fri
+            </ContactItem>
+          </SectionContent>
+        </Section>
+
+        <Section>
+          <SectionTitle>
+            <Send /> Join Our Community
+          </SectionTitle>
+          <SocialLinks>
+            <SocialIcon href="https://facebook.com" target="_blank">
+              <Facebook />
+            </SocialIcon>
+            <SocialIcon href="https://instagram.com" target="_blank">
+              <Instagram />
+            </SocialIcon>
+            <SocialIcon href="https://twitter.com" target="_blank">
+              <Twitter />
+            </SocialIcon>
+            <SocialIcon href="https://linkedin.com" target="_blank">
+              <LinkedIn />
+            </SocialIcon>
+          </SocialLinks>
+          <p style={{ textAlign: 'center', color: '#666' }}>
+            Share your Bakers Inn moments with #BakersInnZim
+          </p>
+        </Section>
+
+        <Section>
+          <SectionTitle>
+            <Help /> Quick Answers
+          </SectionTitle>
+          <FAQGrid>
+            <FAQItem>
+              <h3>Where can I find Bakers Inn products near me?</h3>
+              <p>Use our store locator to find the nearest Bakers Inn outlet.</p>
+            </FAQItem>
+            <FAQItem>
+              <h3>How do I track my bulk order?</h3>
+              <p>Contact our bulk orders team with your order number.</p>
+            </FAQItem>
+            <FAQItem>
+              <h3>Are your products halal-certified?</h3>
+              <p>Yes, all our products are halal-certified.</p>
+            </FAQItem>
+            <FAQItem>
+              <h3>What's your return policy?</h3>
+              <p>We offer a 24-hour satisfaction guarantee on all products.</p>
+            </FAQItem>
+          </FAQGrid>
+        </Section>
+
+        <Section>
+          <SectionTitle>
+            <CheckCircle /> Your Voice Matters
+          </SectionTitle>
+          <ContactCard>
+            <ProcessStep>
+              <Phone /> Step 1: Call/Email Us
+            </ProcessStep>
+            <ProcessStep>
+              <CheckCircle /> Step 2: We'll Acknowledge Within 2 Hours
+            </ProcessStep>
+            <ProcessStep>
+              <CheckCircle /> Step 3: Resolution in 48 Hours
+            </ProcessStep>
+            <p style={{ marginTop: '1rem', color: '#666' }}>
+              Every complaint helps us improve
+            </p>
+          </ContactCard>
+        </Section>
+
+        <Section>
+          <SectionTitle>
+            <Work /> Careers, Press & Partnerships
+          </SectionTitle>
+          <ThreeColumnGrid>
+            <ContactCard>
+              <h3>Open Positions</h3>
+              <ContactItem>
+                <Work /> Sales Manager
+              </ContactItem>
+              <ContactItem>
+                <Work /> Bakery Staff
+              </ContactItem>
+              <Button href="#">
+                <ArrowForward /> Apply Now
+              </Button>
+            </ContactCard>
+
+            <ContactCard>
+              <h3>Press & Media</h3>
+              <ContactItem>
+                <Email /> media@bakersinn.co.zw
+              </ContactItem>
+              <Button href="#">
+                <ArrowForward /> Download Media Kit
+              </Button>
+            </ContactCard>
+
+            <ContactCard>
+              <h3>CSR Partnerships</h3>
+              <ContactItem>
+                <Email /> impact@bakersinn.co.zw
+              </ContactItem>
+              <p style={{ marginTop: '1rem', color: '#666' }}>
+                Partner with us to empower Zimbabwe
+              </p>
+            </ContactCard>
+          </ThreeColumnGrid>
+        </Section>
+
+      </Container>
+
+      <MobileCallButton href="tel:+263XXXXXXXXX">
+        <Phone />
+      </MobileCallButton>
     </ContactContainer>
   )
 }

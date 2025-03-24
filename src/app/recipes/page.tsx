@@ -17,7 +17,8 @@ import {
   WhatsApp,
   Facebook,
   Instagram,
-  ExpandMore
+  ExpandMore,
+  Close
 } from '@mui/icons-material'
 
 const RecipesContainer = styled.div`
@@ -75,18 +76,18 @@ const HeroSubtext = styled.p`
   }
 `
 
-const Navigation = styled.nav<{ $isSticky: boolean }>`
+const RecipeNav = styled.nav`
   background: white;
   padding: 1rem 0;
-  position: ${props => props.$isSticky ? 'fixed' : 'relative'};
-  top: ${props => props.$isSticky ? '0' : 'auto'};
+  position: sticky;
+  top: 0;
   width: 100%;
-  z-index: 100;
-  box-shadow: ${props => props.$isSticky ? '0 2px 10px rgba(0,0,0,0.1)' : 'none'};
+  z-index: 90;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 `
 
-const NavContainer = styled.div`
+const RecipeNavContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -110,7 +111,7 @@ const NavContainer = styled.div`
   }
 `
 
-const NavLink = styled.a<{ $active?: boolean }>`
+const RecipeNavLink = styled.a<{ $active?: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -554,6 +555,52 @@ const VideoDuration = styled.span`
   }
 `
 
+const VideoModal = styled.div<{ $isOpen: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: ${props => props.$isOpen ? 'flex' : 'none'};
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`
+
+const VideoFrame = styled.div`
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  aspect-ratio: 16/9;
+  background: black;
+  border-radius: 0.5rem;
+  overflow: hidden;
+`
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  color: #2B1B58;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #C19A5B;
+    color: white;
+  }
+`
+
 const KidsSection = styled.div`
   background: #FFF6E5;
   padding: 4rem 0;
@@ -703,6 +750,7 @@ const RecipesPage = () => {
   const carouselRef = useRef<HTMLDivElement>(null)
   const [activeFilters, setActiveFilters] = useState<string[]>([])
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
 
   const categories = [
     { id: 'quick', name: 'Quick Snacks', icon: <Fastfood /> },
@@ -716,7 +764,7 @@ const RecipesPage = () => {
     {
       id: 1,
       title: 'Sunshine Bread Garlic Pizza',
-      image: '/images/garlic-pizza.jpg',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop',
       prepTime: '20 mins',
       difficulty: 'Easy',
       description: 'Transform our Sunshine Bread into a crispy pizza base!'
@@ -724,7 +772,7 @@ const RecipesPage = () => {
     {
       id: 2,
       title: 'Chicken Pie Breakfast Bake',
-      image: '/images/chicken-pie-bake.jpg',
+      image: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2070&auto=format&fit=crop',
       prepTime: '30 mins',
       difficulty: 'Medium',
       description: 'A hearty breakfast casserole using our famous chicken pies.'
@@ -732,7 +780,7 @@ const RecipesPage = () => {
     {
       id: 3,
       title: 'Rainbow Sandwich Stack',
-      image: '/images/rainbow-sandwich.jpg',
+      image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=2070&auto=format&fit=crop',
       prepTime: '15 mins',
       difficulty: 'Easy',
       description: 'Colorful and nutritious sandwiches kids will love!'
@@ -744,7 +792,7 @@ const RecipesPage = () => {
       id: 1,
       title: "Chicken Pie Breakfast Bake",
       description: "Crispy pie crust meets cheesy eggs!",
-      image: "/images/chicken-pie-bake.jpg",
+      image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2070&auto=format&fit=crop",
       rating: 4.8,
       reviews: 200,
       prepTime: "15 mins"
@@ -753,7 +801,7 @@ const RecipesPage = () => {
       id: 2,
       title: "Sunshine Bread French Toast",
       description: "Classic breakfast with a Bakers Inn twist",
-      image: "/images/french-toast.jpg",
+      image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=2070&auto=format&fit=crop",
       rating: 4.9,
       reviews: 180,
       prepTime: "20 mins"
@@ -762,7 +810,7 @@ const RecipesPage = () => {
       id: 3,
       title: "Savory Bread Pudding",
       description: "Perfect comfort food for rainy days",
-      image: "/images/bread-pudding.jpg",
+      image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2070&auto=format&fit=crop",
       rating: 4.7,
       reviews: 150,
       prepTime: "45 mins"
@@ -771,7 +819,7 @@ const RecipesPage = () => {
       id: 4,
       title: "Quick Pizza Toast",
       description: "5-minute snack that kids love",
-      image: "/images/pizza-toast.jpg",
+      image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop",
       rating: 4.6,
       reviews: 120,
       prepTime: "5 mins"
@@ -781,7 +829,7 @@ const RecipesPage = () => {
   const recipeOfDay = {
     title: "Rainy Day Special: Spicy Bean & Bread Soup",
     description: "Transform day-old bread into a hearty, warming soup perfect for cold days. This recipe combines our signature Sunshine Bread with protein-rich beans and aromatic spices.",
-    image: "/images/bean-soup.jpg",
+    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2070&auto=format&fit=crop",
     prepTime: "30 mins",
     difficulty: "Medium"
   };
@@ -813,20 +861,23 @@ const RecipesPage = () => {
     {
       id: 1,
       title: "5-Minute Snack Hacks with Sunshine Bread",
-      thumbnail: "/images/snack-hacks.jpg",
-      duration: "5:30"
+      thumbnail: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=2070&auto=format&fit=crop",
+      duration: "5:30",
+      videoId: "dQw4w9WgXcQ"
     },
     {
       id: 2,
       title: "Transform Leftover Bread into Croutons!",
-      thumbnail: "/images/croutons.jpg",
-      duration: "3:45"
+      thumbnail: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=2070&auto=format&fit=crop",
+      duration: "3:45",
+      videoId: "jNQXAC9IVRw"
     },
     {
       id: 3,
       title: "Kids' Lunch Box Ideas",
-      thumbnail: "/images/lunchbox.jpg",
-      duration: "7:20"
+      thumbnail: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=2070&auto=format&fit=crop",
+      duration: "7:20",
+      videoId: "9bZkp7q19f0"
     }
   ];
 
@@ -835,13 +886,13 @@ const RecipesPage = () => {
       id: 1,
       title: "Rainbow Sandwich Faces",
       description: "Create fun and colorful faces using Sunshine Bread and fresh vegetables!",
-      image: "/images/rainbow-sandwich.jpg"
+      image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=2070&auto=format&fit=crop"
     },
     {
       id: 2,
       title: "Mini Pizza Bites",
       description: "Turn Bakers Inn rolls into delicious mini pizzas that kids can help make!",
-      image: "/images/mini-pizza.jpg"
+      image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop"
     }
   ]
 
@@ -850,13 +901,13 @@ const RecipesPage = () => {
       id: 1,
       title: "Christmas Bread Wreath",
       description: "A festive centerpiece made with Bakers Inn dough",
-      image: "/images/bread-wreath.jpg"
+      image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=2070&auto=format&fit=crop"
     },
     {
       id: 2,
       title: "Easter Bunny Biscuits",
       description: "Cute and delicious Easter-themed treats",
-      image: "/images/bunny-biscuits.jpg"
+      image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2070&auto=format&fit=crop"
     }
   ]
 
@@ -910,7 +961,7 @@ const RecipesPage = () => {
     <RecipesContainer>
       <HeroSection>
         <Image
-          src="/images/recipe-hero.jpg"
+          src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2070&auto=format&fit=crop"
           alt="Delicious recipes with Bakers Inn"
           fill
           style={{ objectFit: 'cover' }}
@@ -922,22 +973,29 @@ const RecipesPage = () => {
         </HeroContent>
       </HeroSection>
 
-      <Navigation $isSticky={true}>
-        <NavContainer>
+      <RecipeNav>
+        <RecipeNavContainer>
           {categories.map(category => (
-            <NavLink 
+            <RecipeNavLink 
               key={category.id}
               href={`#${category.id}`}
               $active={activeCategory === category.id}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveCategory(category.id);
+                const element = document.getElementById(category.id);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               {category.icon} {category.name}
-            </NavLink>
+            </RecipeNavLink>
           ))}
-        </NavContainer>
-      </Navigation>
+        </RecipeNavContainer>
+      </RecipeNav>
 
-      <CarouselSection>
+      <CarouselSection id="quick">
         <CarouselContainer>
           <CarouselTitle>Recipe of the Month</CarouselTitle>
           <CarouselTrack 
@@ -977,7 +1035,7 @@ const RecipesPage = () => {
         </CarouselContainer>
       </CarouselSection>
 
-      <TrendingSection>
+      <TrendingSection id="family">
         <CarouselContainer>
           <CarouselTitle>What Zimbabwe is Cooking</CarouselTitle>
           <TrendingGrid>
@@ -1069,12 +1127,12 @@ const RecipesPage = () => {
         </RecipeContent>
       </RecipeSection>
 
-      <VideoSection>
+      <VideoSection id="hacks">
         <CarouselContainer>
           <CarouselTitle>Watch & Bake</CarouselTitle>
           <VideoGrid>
             {videoTutorials.map(video => (
-              <VideoCard key={video.id}>
+              <VideoCard key={video.id} onClick={() => setSelectedVideo(video.videoId)}>
                 <VideoThumbnail>
                   <Image
                     src={video.thumbnail}
@@ -1098,7 +1156,28 @@ const RecipesPage = () => {
         </CarouselContainer>
       </VideoSection>
 
-      <KidsSection>
+      <VideoModal $isOpen={!!selectedVideo}>
+        {selectedVideo && (
+          <>
+            <CloseButton onClick={() => setSelectedVideo(null)}>
+              <Close />
+            </CloseButton>
+            <VideoFrame>
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${selectedVideo}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </VideoFrame>
+          </>
+        )}
+      </VideoModal>
+
+      <KidsSection id="kids">
         <CarouselContainer>
           <CarouselTitle>Fun Recipes for Little Chefs</CarouselTitle>
           <KidsGrid>
@@ -1125,7 +1204,7 @@ const RecipesPage = () => {
         </CarouselContainer>
       </KidsSection>
 
-      <FestiveSection>
+      <FestiveSection id="festive">
         <CarouselContainer>
           <CarouselTitle>Festive Specials</CarouselTitle>
           <TrendingGrid>

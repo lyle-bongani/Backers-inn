@@ -22,8 +22,12 @@ export default function RootLayout({
       <head>
         <title>Bakers Inn - Fresh Baked Goodness</title>
         <meta name="description" content="Experience fresh baked bread and pastries delivered to your doorstep." />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <StyledComponentsRegistry>
           <Nav />
           {children}
