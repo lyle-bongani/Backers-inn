@@ -5,16 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { 
-  Build,
-  SportsEsports,
-  OutdoorGrill,
-  School,
-  TheaterComedy,
-  Palette,
-  EmojiEvents,
-  VolunteerActivism,
-  Print,
-  FilterList,
   Info,
   VerifiedUser,
   Timer,
@@ -347,7 +337,7 @@ const KidsCornerPage = () => {
     <KidsContainer>
       <HeroSection>
         <Image
-          src="/kids-hero.jpg"
+          src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
           alt="Kids Corner"
           fill
           style={{ objectFit: 'cover' }}

@@ -442,10 +442,11 @@ const ProductsPage = () => {
     <ProductsContainer>
       <HeroSection>
         <Image
-          src="/products-hero.jpg"
+          src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
           alt="Our Products"
           fill
           style={{ objectFit: 'cover' }}
+          priority
         />
         <h1>Our Products</h1>
       </HeroSection>

@@ -76,7 +76,7 @@ const Factory = () => {
         <Content>
           <Title>Book A Factory Tour</Title>
           <Description>
-            Keep on seeing how Baker's Inn products are made? Are you interested in a field trip day for your school's className? Get in touch with us to book a tour of our factory that is closest to you. Fill in the booking form and will get back to you.
+            Keep on seeing how Baker&apos;s Inn products are made? Are you interested in a field trip day for your school&apos;s className? Get in touch with us to book a tour of our factory that is closest to you. Fill in the booking form and will get back to you.
           </Description>
           <BookButton onClick={() => setIsModalOpen(true)}>
             BOOK FACTORY TOUR
@@ -86,7 +86,7 @@ const Factory = () => {
         <ImageContainer>
           <Image
             src="/images/factory bread.png"
-            alt="Baker's Inn Factory Production Line"
+            alt="Baker&apos;s Inn Factory Production Line"
             fill
             style={{ objectFit: 'cover' }}
             priority

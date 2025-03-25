@@ -142,6 +142,7 @@ const DonationRequestModal = ({ isOpen, onClose }: DonationRequestModalProps) =>
           </Select>
           <SubmitButton>Proceed to next step</SubmitButton>
         </Form>
+        <p>We&apos;ll review your request and get back to you within 48 hours</p>
       </ModalContent>
     </ModalOverlay>
   )

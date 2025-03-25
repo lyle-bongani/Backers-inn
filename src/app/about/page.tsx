@@ -2,19 +2,21 @@
 
 import styled from 'styled-components'
 import Image from 'next/image'
+import { 
+  Grain,
+  Favorite,
+  Star,
+  LocalFlorist,
+  Groups,
+  Recycling
+} from '@mui/icons-material'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { 
   Timeline, 
-  WheatIcon, 
-  HeartIcon, 
-  StarIcon, 
   MapIcon,
-  LeafIcon,
-  TeamIcon,
   TruckIcon,
-  CertificateIcon,
-  RecycleIcon
+  CertificateIcon
 } from './Icons'
 
 const fadeIn = {
@@ -461,9 +463,9 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <WheatIcon />
+              <Grain />
               <h3>Quality Ingredients</h3>
-              <p>We use only the finest local ingredients in our products</p>
+              <p>We use only the finest ingredients, carefully selected for their quality and taste.</p>
             </ValueCard>
 
             <ValueCard
@@ -471,9 +473,9 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <HeartIcon />
-              <h3>Community Support</h3>
-              <p>Supporting local farmers and communities across Zimbabwe</p>
+              <Favorite />
+              <h3>Customer Satisfaction</h3>
+              <p>Your happiness is our top priority, and we&apos;re committed to exceeding your expectations.</p>
             </ValueCard>
 
             <ValueCard
@@ -481,11 +483,72 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <StarIcon />
+              <Star />
               <h3>Excellence</h3>
-              <p>Committed to delivering the best quality products</p>
+              <p>We strive for excellence in every aspect of our business, from product quality to service.</p>
             </ValueCard>
           </ValuesGrid>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <SectionTitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Our Journey
+          </SectionTitle>
+          <SectionSubtitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            A timeline of our growth and achievements
+          </SectionSubtitle>
+
+          <TimelineSection>
+            <TimelineItem>
+              <TimelineContent>
+                <h3>1982</h3>
+                <p>Baker's Inn was founded with a vision to provide quality bread to Zimbabwe.</p>
+              </TimelineContent>
+              <TimelineDot />
+            </TimelineItem>
+
+            <TimelineItem>
+              <TimelineContent>
+                <h3>1995</h3>
+                <p>Expanded operations to multiple locations across Zimbabwe.</p>
+              </TimelineContent>
+              <TimelineDot />
+            </TimelineItem>
+
+            <TimelineItem>
+              <TimelineContent>
+                <h3>2005</h3>
+                <p>Introduced new product lines and modernized our baking facilities.</p>
+              </TimelineContent>
+              <TimelineDot />
+            </TimelineItem>
+
+            <TimelineItem>
+              <TimelineContent>
+                <h3>2015</h3>
+                <p>Launched our sustainability initiatives and community support programs.</p>
+              </TimelineContent>
+              <TimelineDot />
+            </TimelineItem>
+
+            <TimelineItem>
+              <TimelineContent>
+                <h3>2020</h3>
+                <p>Became Zimbabwe's leading bakery with nationwide distribution.</p>
+              </TimelineContent>
+              <TimelineDot />
+            </TimelineItem>
+          </TimelineSection>
         </Container>
       </Section>
 
@@ -512,9 +575,9 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <LeafIcon />
+              <LocalFlorist />
               <h3>Sustainability</h3>
-              <p>Committed to environmental responsibility</p>
+              <p>We&apos;re committed to sustainable practices and reducing our environmental impact.</p>
             </ValueCard>
 
             <ValueCard
@@ -522,9 +585,9 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <TeamIcon />
-              <h3>Employment</h3>
-              <p>Creating jobs across Zimbabwe</p>
+              <Groups />
+              <h3>Community</h3>
+              <p>We believe in building strong relationships with our community and supporting local initiatives.</p>
             </ValueCard>
 
             <ValueCard
@@ -532,9 +595,9 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <RecycleIcon />
+              <Recycling />
               <h3>Innovation</h3>
-              <p>Continuously improving our processes</p>
+              <p>We continuously innovate to bring you the best products and experiences.</p>
             </ValueCard>
           </ValuesGrid>
         </Container>
@@ -734,7 +797,7 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <RecycleIcon />
+              <Recycling />
               <h3>Zero Waste by 2030</h3>
               <p>Committed to reducing our environmental impact through sustainable practices.</p>
             </ValueCard>
@@ -743,7 +806,7 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <LeafIcon />
+              <LocalFlorist />
               <h3>Eco-Friendly Packaging</h3>
               <p>Transitioning to biodegradable packaging solutions.</p>
             </ValueCard>
@@ -752,7 +815,7 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <TeamIcon />
+              <Groups />
               <h3>Community Clean-up</h3>
               <p>Regular initiatives to keep our communities clean and green.</p>
             </ValueCard>

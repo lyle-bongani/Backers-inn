@@ -266,7 +266,7 @@ const Nav = () => {
             <NavLink href="/about" $isActive={pathname === '/about'}>About us</NavLink>
             <NavLink href="/products" $isActive={pathname === '/products'}>Products</NavLink>
             <NavLink href="/recipes" $isActive={pathname === '/recipes'}>Recipes</NavLink>
-            <NavLink href="/kids-corner" $isActive={pathname === '/kids-corner'}>Kid's Corner</NavLink>
+            <NavLink href="/kids-corner" $isActive={pathname === '/kids-corner'}>Kid&apos;s Corner</NavLink>
             <ContactButton href="/contact" $isActive={pathname === '/contact'}>Contact Us</ContactButton>
           </NavLinks>
         </NavContent>

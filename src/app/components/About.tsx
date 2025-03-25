@@ -93,6 +93,8 @@ const About = () => {
           <Description>
             It all started in the eighties when Baker's Inn was just a small confectionery company that employed 40 people and produced about 30,000 loaves a day. We now aim to provide a nourishing, convinient and accessible answer to hunger's call.
           </Description>
+          <p>We&apos;re committed to quality and innovation</p>
+          <p>Join us in our journey to provide Zimbabwe&apos;s finest bread products</p>
           <ReadMoreButton href="/about">
             READ MORE
           </ReadMoreButton>

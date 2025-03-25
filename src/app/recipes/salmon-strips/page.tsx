@@ -4,16 +4,18 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { 
+  AccessTime as AccessTimeIcon,
+  Restaurant as RestaurantIcon,
+  ArrowBack as ArrowBackIcon,
+  Print as PrintIcon,
+  Share as ShareIcon,
+  Favorite as FavoriteIcon
+} from '@mui/icons-material'
 
 // Import icons individually to fix barrel optimization issues
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import PeopleIcon from '@mui/icons-material/People'
-import RestaurantIcon from '@mui/icons-material/Restaurant'
 import SetMealIcon from '@mui/icons-material/SetMeal'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import PrintIcon from '@mui/icons-material/Print'
-import ShareIcon from '@mui/icons-material/Share'
-import FavoriteIcon from '@mui/icons-material/Favorite'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
 

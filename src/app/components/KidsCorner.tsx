@@ -105,7 +105,7 @@ const KidsCorner = () => {
           />
         </ImageContainer>
         <TextContent>
-          <Title>Kid's Corner</Title>
+          <Title>Kid&apos;s Corner</Title>
           <Description>
             let your children join the fun. Explore a place with exciting games and the top winners stand a chance to win exciting monthly prizes!
           </Description>

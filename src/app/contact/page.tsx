@@ -22,7 +22,8 @@ import {
   Newspaper,
   VolunteerActivism,
   CheckCircle,
-  ArrowForward
+  ArrowForward,
+  YouTube
 } from '@mui/icons-material'
 
 const ContactContainer = styled.div`
@@ -48,13 +49,21 @@ const ContactContent = styled.div`
   padding: 0 2rem;
   position: relative;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 `
 
 const ContactForm = styled.form`
   background: white;
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 600px;
+  overflow-y: auto;
 `
 
 const Container = styled.div`
@@ -196,21 +205,15 @@ const Button = styled.a`
   }
 `
 
-const Form = styled.form`
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-`
-
 const FormGroup = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   label {
     display: block;
     margin-bottom: 0.5rem;
     color: #2B1B58;
     font-weight: 500;
+    font-size: 1.1rem;
   }
 
   input, textarea, select {
@@ -220,11 +223,12 @@ const FormGroup = styled.div`
     border-radius: 0.5rem;
     font-size: 1rem;
     transition: all 0.3s ease;
+    background: #FAF7F2;
 
     &:focus {
       outline: none;
-      border-color: #2B1B58;
-      box-shadow: 0 0 0 2px rgba(43, 27, 88, 0.1);
+      border-color: #C19A5B;
+      box-shadow: 0 0 0 2px rgba(193, 154, 91, 0.1);
     }
   }
 
@@ -243,12 +247,12 @@ const CheckboxGroup = styled.div`
 `
 
 const SubmitButton = styled.button`
-  background: #2B1B58;
+  background: #C19A5B;
   color: white;
   border: none;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
@@ -256,9 +260,11 @@ const SubmitButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  margin-top: 1rem;
 
   &:hover {
-    background: #3C2C69;
+    background: #A88347;
+    transform: translateY(-2px);
   }
 
   &:disabled {
@@ -270,18 +276,22 @@ const SubmitButton = styled.button`
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
   margin: 2rem 0;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 `
 
 const SocialLink = styled(Link)`
   color: #2B1B58;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   transition: all 0.3s ease;
 
   &:hover {
     color: #C19A5B;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 `
 
@@ -339,12 +349,13 @@ const MobileCallButton = styled.a`
 const MapFormContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 4rem auto;
-  width: 95%;
+  gap: 3rem;
+  margin: 2rem 0;
+  width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 `
 
@@ -372,6 +383,7 @@ const ContactDetails = styled.div`
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 
   &::before {
     content: '';
@@ -458,7 +470,7 @@ const ContactPage = () => {
     <ContactContainer>
       <HeroSection>
         <Image
-          src="/contact-hero.jpg"
+          src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
           alt="Contact Us"
           fill
           style={{ objectFit: 'cover' }}
@@ -509,6 +521,97 @@ const ContactPage = () => {
           </ContactGroup>
         </ContactDetails>
 
+        <MapFormContainer>
+          <MapSection>
+            <MapIframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.772508808757!2d31.0448!3d-17.8277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a4e0c1f3c0a1%3A0x1f3c0a1f3c0a1f3c!2sBaker%27s%20Inn!5e0!3m2!1sen!2szw!4v1625760000000!5m2!1sen!2szw"
+              title="Baker's Inn Location"
+            />
+          </MapSection>
+
+          <ContactForm onSubmit={handleSubmit}>
+            <FormGroup>
+              <label htmlFor="name">Name*</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label htmlFor="email">Email*</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label htmlFor="subject">Subject*</label>
+              <select
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select a subject</option>
+                <option value="product-feedback">Product Feedback</option>
+                <option value="complaint">Complaint</option>
+                <option value="partnership">Partnership</option>
+                <option value="other">Other</option>
+              </select>
+            </FormGroup>
+
+            <FormGroup>
+              <label htmlFor="message">Message*</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+            </FormGroup>
+
+            <CheckboxGroup>
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                checked={formData.consent}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="consent">I agree to the privacy policy and terms of service*</label>
+            </CheckboxGroup>
+
+            <SubmitButton type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+              <Send />
+            </SubmitButton>
+          </ContactForm>
+        </MapFormContainer>
+
         <SocialLinks>
           <SocialLink href="https://facebook.com/bakersinn" target="_blank">
             <Facebook />
@@ -523,88 +626,10 @@ const ContactPage = () => {
             <LinkedIn />
           </SocialLink>
         </SocialLinks>
-
-        <ContactForm onSubmit={handleSubmit}>
-          <FormGroup>
-            <label htmlFor="name">Name*</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label htmlFor="email">Email*</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label htmlFor="phone">Phone</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label htmlFor="subject">Subject*</label>
-            <select
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a subject</option>
-              <option value="product-feedback">Product Feedback</option>
-              <option value="complaint">Complaint</option>
-              <option value="partnership">Partnership</option>
-              <option value="other">Other</option>
-            </select>
-          </FormGroup>
-
-          <FormGroup>
-            <label htmlFor="message">Message*</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </FormGroup>
-
-          <CheckboxGroup>
-            <input
-              type="checkbox"
-              id="consent"
-              name="consent"
-              checked={formData.consent}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="consent">I agree to Bakers Inn's Privacy Policy</label>
-          </CheckboxGroup>
-
-          <SubmitButton type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Sending...' : 'Send →'}
-          </SubmitButton>
-        </ContactForm>
       </ContactContent>
+      <MobileCallButton href="tel:+263242751481">
+        <Phone />
+      </MobileCallButton>
     </ContactContainer>
   )
 }

@@ -232,13 +232,13 @@ const Recipes = () => {
 
   return (
     <Container>
-      <Title>Baker's Recipes</Title>
+      <Title>Baker&apos;s Recipes</Title>
       <TabContainer>
         <Tab 
           $active={activeTab === 'kids'} 
           onClick={() => setActiveTab('kids')}
         >
-          For Kid's
+          For Kid&apos;s
         </Tab>
         <Tab 
           $active={activeTab === 'vegans'} 

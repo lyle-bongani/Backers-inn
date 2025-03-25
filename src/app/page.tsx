@@ -11,7 +11,6 @@ import Products from './components/Products'
 import Recipes from './components/Recipes'
 import KidsCorner from './components/KidsCorner'
 import Newsletter from './components/Newsletter'
-import Footer from './components/Footer'
 
 const Main = styled.main`
   min-height: 100vh;
@@ -27,7 +26,6 @@ const HomePage = () => {
       <Recipes />
       <KidsCorner />
       <Newsletter />
-      <Footer />
     </Main>
   )
 }

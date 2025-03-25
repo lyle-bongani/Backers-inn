@@ -223,7 +223,7 @@ const Footer: React.FC = () => {
             <Link href="/">Home</Link>
             <Link href="/about">About Us</Link>
             <Link href="/recipes">Recipes</Link>
-            <Link href="/kids">Kid's Corner</Link>
+            <Link href="/kids">Kid&apos;s Corner</Link>
           </SitemapLinks>
         </Section>
       </MainContent>
