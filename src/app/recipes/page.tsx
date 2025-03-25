@@ -2,6 +2,7 @@
 
 import styled from 'styled-components'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useRef } from 'react'
 import { 
   AccessTime,
@@ -22,6 +23,14 @@ import {
   Restaurant
 } from '@mui/icons-material'
 import { motion } from 'framer-motion'
+
+// Import icons individually
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import RestaurantIcon from '@mui/icons-material/Restaurant'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import PrintIcon from '@mui/icons-material/Print'
+import ShareIcon from '@mui/icons-material/Share'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 const RecipesContainer = styled.div`
   min-height: 100vh;
@@ -745,6 +754,62 @@ const FAQAnswer = styled.div<{ $expanded: boolean }>`
   overflow: hidden;
   transition: all 0.3s;
 `
+
+const Card = styled.div`
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+`
+
+const CardImage = styled.div`
+  position: relative;
+  height: 200px;
+  background: #f5f5f5;
+`
+
+const CardContent = styled.div`
+  padding: 1.5rem;
+`
+
+const CardTitle = styled.h3`
+  color: #2B1B58;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+`
+
+const CardDescription = styled.p`
+  color: #666666;
+  font-size: 1rem;
+  line-height: 1.5;
+`
+
+const RecipeCard = () => {
+  return (
+    <Card>
+      <CardImage>
+        <Image
+          src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?q=80&w=2070&auto=format&fit=crop"
+          alt="Recipe"
+          fill
+          style={{ objectFit: 'cover' }}
+        />
+      </CardImage>
+      <CardContent>
+        <CardTitle>Baker&apos;s Inn Special Recipe</CardTitle>
+        <CardDescription>
+          A delicious recipe using Baker&apos;s Inn bread
+        </CardDescription>
+      </CardContent>
+    </Card>
+  )
+}
 
 const RecipesPage = () => {
   const [activeCategory, setActiveCategory] = useState('quick')

@@ -3,21 +3,20 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { 
-  AccessTime,
-  People,
-  Restaurant,
-  LocalDining
-} from '@mui/icons-material'
 import Link from 'next/link'
 import { useState } from 'react'
+
+// Import icons individually to fix barrel optimization issues
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import PeopleIcon from '@mui/icons-material/People'
+import RestaurantIcon from '@mui/icons-material/Restaurant'
+import SetMealIcon from '@mui/icons-material/SetMeal'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import PrintIcon from '@mui/icons-material/Print'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import HomeIcon from '@mui/icons-material/Home'
-import CakeIcon from '@mui/icons-material/Cake'
 import ListAltIcon from '@mui/icons-material/ListAlt'
+import HomeIcon from '@mui/icons-material/Home'
 
 // Reuse all styled components from shwarma page
 const Container = styled.div`
@@ -429,7 +428,7 @@ const SweetShortbreadPage = () => {
           <Stats>
             <StatItem>
               <StatIcon>
-                <AccessTime />
+                <AccessTimeIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Prep Time</StatLabel>
@@ -438,7 +437,7 @@ const SweetShortbreadPage = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <People />
+                <PeopleIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Serves</StatLabel>
@@ -447,7 +446,7 @@ const SweetShortbreadPage = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <CakeIcon />
+                <SetMealIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Category</StatLabel>
@@ -473,7 +472,7 @@ const SweetShortbreadPage = () => {
 
           <Section>
             <SectionTitle>
-              <Restaurant /> Directions
+              <RestaurantIcon /> Directions
             </SectionTitle>
             <StepsList>
               <StepItem>

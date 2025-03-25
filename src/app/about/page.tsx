@@ -694,12 +694,12 @@ const AboutPage = () => {
               <p>&quot;Their commitment to quality and community support makes them more than just a bakery - they&apos;re family!&quot;</p>
               <div className="author">
                 <div className="image">
-                  <Image
+              <Image
                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2070&auto=format&fit=crop"
                     alt="Customer"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
+                fill
+                style={{ objectFit: 'cover' }}
+              />
                 </div>
                 <div className="info">
                   <h4>Ruth Makoni</h4>

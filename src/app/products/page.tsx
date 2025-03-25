@@ -19,59 +19,46 @@ import {
   Favorite,
   Nature
 } from '@mui/icons-material'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
-const Container = styled.div`
+const ProductsContainer = styled.div`
   min-height: 100vh;
+  background: #FAFAFA;
 `
 
 const HeroSection = styled.div`
   position: relative;
-  height: 80vh;
-  min-height: 600px;
+  height: 70vh;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
 `
 
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
+const ProductsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: -100px auto 4rem;
   padding: 0 2rem;
+  position: relative;
+  z-index: 10;
 `
 
-const HeroTitle = styled.h1`
-  font-size: 4rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+const ProductCard = styled.div`
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
 
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`
-
-const HeroSubtext = styled.p`
-  font-size: 1.5rem;
-  opacity: 0.9;
-  margin-bottom: 2rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
+  &:hover {
+    transform: translateY(-5px);
   }
 `
 
@@ -110,7 +97,7 @@ const NavContainer = styled.div`
   }
 `
 
-const NavLink = styled.a<{ $active?: boolean }>`
+const NavLink = styled(Link)<{ $active?: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -156,25 +143,6 @@ const SectionSubtitle = styled.p`
   margin-bottom: 3rem;
 `
 
-const ProductGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-`
-
-const ProductCard = styled.div`
-  background: white;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-`
-
 const ProductImage = styled.div`
   position: relative;
   height: 250px;
@@ -210,7 +178,7 @@ const Variant = styled.span`
   color: #666;
 `
 
-const CTAButton = styled.a`
+const CTAButton = styled(Link)`
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background: #C19A5B;
@@ -450,6 +418,16 @@ const ProductsPage = () => {
   const [isSticky, setIsSticky] = useState(false)
   const [activePartner, setActivePartner] = useState('ok')
 
+  const products = [
+    {
+      id: 1,
+      name: "Sunshine Bread",
+      description: "Our signature white bread",
+      image: "/products/sunshine-bread.jpg"
+    },
+    // More products...
+  ]
+
   // Handle scroll for sticky navigation
   useEffect(() => {
     const handleScroll = () => {
@@ -461,19 +439,15 @@ const ProductsPage = () => {
   }, [])
 
   return (
-    <Container>
+    <ProductsContainer>
       <HeroSection>
         <Image
-          src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
-          alt="Fresh Baked Goods"
+          src="/products-hero.jpg"
+          alt="Our Products"
           fill
           style={{ objectFit: 'cover' }}
-          priority
         />
-        <HeroContent>
-          <HeroTitle>Baked Fresh Daily, Loved Nationwide</HeroTitle>
-          <HeroSubtext>Discover Zimbabwe's Favourite Breads, Snacks, and Treats.</HeroSubtext>
-        </HeroContent>
+        <h1>Our Products</h1>
       </HeroSection>
 
       <Navigation $isSticky={isSticky}>
@@ -496,10 +470,18 @@ const ProductsPage = () => {
         </NavContainer>
       </Navigation>
 
+      <ProductsGrid>
+        {products.map(product => (
+          <ProductCard key={product.id}>
+            {/* Product details */}
+          </ProductCard>
+        ))}
+      </ProductsGrid>
+
       <SectionContainer id="breads">
         <SectionTitle>Our Daily Bread, Your Daily Joy</SectionTitle>
         <SectionSubtitle>Fresh from our ovens to your table</SectionSubtitle>
-        <ProductGrid>
+        <ProductsGrid>
           <ProductCard>
             <ProductImage>
               <Image
@@ -558,13 +540,13 @@ const ProductsPage = () => {
               <CTAButton href="/products/premium-sourdough">Learn More</CTAButton>
             </ProductInfo>
           </ProductCard>
-        </ProductGrid>
+        </ProductsGrid>
       </SectionContainer>
 
       <SectionContainer id="snacks">
         <SectionTitle>On-the-Go Treats, Made with Love</SectionTitle>
         <SectionSubtitle>Perfect snacks for any time of day</SectionSubtitle>
-        <ProductGrid>
+        <ProductsGrid>
           <ProductCard>
             <ProductImage>
               <Image
@@ -624,13 +606,13 @@ const ProductsPage = () => {
               <CTAButton href="/products/doughnuts">Learn More</CTAButton>
             </ProductInfo>
           </ProductCard>
-        </ProductGrid>
+        </ProductsGrid>
       </SectionContainer>
 
       <SectionContainer id="cakes">
         <SectionTitle>Celebrate Life's Sweet Moments</SectionTitle>
         <SectionSubtitle>Custom cakes and desserts for every occasion</SectionSubtitle>
-        <ProductGrid>
+        <ProductsGrid>
           <ProductCard>
             <ProductImage>
               <Image
@@ -691,13 +673,13 @@ const ProductsPage = () => {
               <CTAButton href="/products/cupcakes">Learn More</CTAButton>
             </ProductInfo>
           </ProductCard>
-        </ProductGrid>
+        </ProductsGrid>
       </SectionContainer>
 
       <SectionContainer id="seasonal">
         <SectionTitle>Limited-Time Flavors You'll Crave</SectionTitle>
         <SectionSubtitle>Special treats for special occasions</SectionSubtitle>
-        <ProductGrid>
+        <ProductsGrid>
           <ProductCard>
             <ProductImage>
               <Image
@@ -737,13 +719,13 @@ const ProductsPage = () => {
               <CTAButton href="/products/hot-cross-buns">Learn More</CTAButton>
             </ProductInfo>
           </ProductCard>
-        </ProductGrid>
+        </ProductsGrid>
       </SectionContainer>
 
       <SectionContainer id="wholesale">
         <SectionTitle>Stock Up for Home, Business, or Events</SectionTitle>
         <SectionSubtitle>Bulk orders and wholesale solutions</SectionSubtitle>
-        <ProductGrid>
+        <ProductsGrid>
           <ProductCard>
             <ProductImage>
               <Image
@@ -803,7 +785,7 @@ const ProductsPage = () => {
               <CTAButton href="/products/event-package">Learn More</CTAButton>
             </ProductInfo>
           </ProductCard>
-        </ProductGrid>
+        </ProductsGrid>
       </SectionContainer>
 
       <InfoSection $theme="dark">
@@ -903,7 +885,7 @@ const ProductsPage = () => {
       <SectionContainer>
         <SectionTitle>What Zimbabwe Loves Most</SectionTitle>
         <SectionSubtitle>Our customers' favorites</SectionSubtitle>
-        <ProductGrid>
+        <ProductsGrid>
           <TestimonialCard>
             <CustomerInfo>
               <CustomerImage>
@@ -1023,7 +1005,7 @@ const ProductsPage = () => {
             </CustomerInfo>
             <ProductTagline>"Their scones remind me of my grandmother's baking. Simply perfect with tea!"</ProductTagline>
           </TestimonialCard>
-        </ProductGrid>
+        </ProductsGrid>
       </SectionContainer>
 
       <InfoSection $theme="dark">
@@ -1037,7 +1019,7 @@ const ProductsPage = () => {
           </ImpactMetrics>
         </SectionContainer>
       </InfoSection>
-      </Container>
+    </ProductsContainer>
   )
 }
 

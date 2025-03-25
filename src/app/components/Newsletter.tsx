@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Section = styled.section`
   padding: 2rem 1rem;
-  margin: 4rem 3rem;
+  margin: 8rem 3rem 4rem;
   background: #B69D74;
   position: relative;
   overflow: visible;
@@ -27,7 +27,7 @@ const Section = styled.section`
   }
 
   @media (max-width: 768px) {
-    margin: 2rem 1rem;
+    margin: 6rem 1rem 2rem;
     padding: 1.5rem 1rem;
   }
 `

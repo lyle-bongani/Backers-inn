@@ -8,8 +8,15 @@ import Footer from './components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Baker's Inn Zimbabwe",
-  description: 'The freshest bread and confectionery in Zimbabwe',
+  title: "Baker&apos;s Inn Zimbabwe",
+  description: 'Zimbabwe&apos;s favorite bread and confectionery manufacturer',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+  },
 };
 
 export default function RootLayout({
@@ -30,7 +37,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <StyledComponentsRegistry>
           <Nav />
-          {children}
+          <main>{children}</main>
           <Footer />
         </StyledComponentsRegistry>
       </body>

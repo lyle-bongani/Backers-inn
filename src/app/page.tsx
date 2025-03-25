@@ -1,31 +1,35 @@
 'use client'
 
-import React from 'react'
+import styled from 'styled-components'
+import Image from 'next/image'
+import Link from 'next/link'
+
+// Import components
 import Hero from './components/Hero'
 import About from './components/About'
 import Products from './components/Products'
-import Factory from './components/Factory'
-import Donation from './components/Donation'
-import KidsCorner from './components/KidsCorner'
 import Recipes from './components/Recipes'
+import KidsCorner from './components/KidsCorner'
 import Newsletter from './components/Newsletter'
-import styled from 'styled-components'
+import Footer from './components/Footer'
 
-const MainContent = styled.main`
-  /* Remove padding-top since it's handled by globals.css */
+const Main = styled.main`
+  min-height: 100vh;
+  background: #FAFAFA;
 `
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <MainContent>
+    <Main>
       <Hero />
       <About />
       <Products />
-      <Factory />
-      <Donation />
-      <KidsCorner />
       <Recipes />
+      <KidsCorner />
       <Newsletter />
-    </MainContent>
+      <Footer />
+    </Main>
   )
 }
+
+export default HomePage

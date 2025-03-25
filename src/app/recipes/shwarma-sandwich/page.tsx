@@ -3,14 +3,14 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { 
-  AccessTime,
-  People,
-  Restaurant,
-  LocalDining
-} from '@mui/icons-material'
 import Link from 'next/link'
 import { useState } from 'react'
+
+// Import icons individually to fix barrel optimization issues
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import PeopleIcon from '@mui/icons-material/People'
+import RestaurantIcon from '@mui/icons-material/Restaurant'
+import SetMealIcon from '@mui/icons-material/SetMeal'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import PrintIcon from '@mui/icons-material/Print'
 import ShareIcon from '@mui/icons-material/Share'
@@ -428,7 +428,7 @@ const ShwarmaSandwichPage = () => {
           <Stats>
             <StatItem>
               <StatIcon>
-                <AccessTime />
+                <AccessTimeIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Prep Time</StatLabel>
@@ -437,7 +437,7 @@ const ShwarmaSandwichPage = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <People />
+                <PeopleIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Serves</StatLabel>
@@ -446,7 +446,7 @@ const ShwarmaSandwichPage = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <Restaurant />
+                <RestaurantIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Cuisine</StatLabel>
@@ -472,7 +472,7 @@ const ShwarmaSandwichPage = () => {
 
           <Section>
             <SectionTitle>
-              <Restaurant /> Directions
+              <RestaurantIcon /> Directions
             </SectionTitle>
             <StepsList>
               <StepItem>

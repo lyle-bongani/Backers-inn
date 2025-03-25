@@ -2,22 +2,20 @@
 
 import styled from 'styled-components'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { 
-  AccessTime,
-  People,
-  Restaurant,
-  LocalDining,
-  SetMealIcon,
-  ArrowBackIcon,
-  PrintIcon,
-  ShareIcon,
-  FavoriteIcon,
-  ListAltIcon,
-  HomeIcon
-} from '@mui/icons-material'
 import Link from 'next/link'
 import { useState } from 'react'
+
+// Import icons individually to fix barrel optimization issues
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import PeopleIcon from '@mui/icons-material/People'
+import RestaurantIcon from '@mui/icons-material/Restaurant'
+import SetMealIcon from '@mui/icons-material/SetMeal'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import PrintIcon from '@mui/icons-material/Print'
+import ShareIcon from '@mui/icons-material/Share'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import ListAltIcon from '@mui/icons-material/ListAlt'
+import HomeIcon from '@mui/icons-material/Home'
 
 // Reuse all styled components from shwarma page
 const Container = styled.div`
@@ -357,7 +355,7 @@ const SalmonStripsPage = () => {
       <HeroSection>
         <HeroImage>
           <Image
-            src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2070&auto=format&fit=crop"
             alt="Salmon Strips"
             fill
             style={{ objectFit: 'cover' }}
@@ -406,7 +404,7 @@ const SalmonStripsPage = () => {
           <Stats>
             <StatItem>
               <StatIcon>
-                <AccessTime />
+                <AccessTimeIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Prep Time</StatLabel>
@@ -415,7 +413,7 @@ const SalmonStripsPage = () => {
             </StatItem>
             <StatItem>
               <StatIcon>
-                <People />
+                <PeopleIcon />
               </StatIcon>
               <StatInfo>
                 <StatLabel>Serves</StatLabel>
@@ -450,7 +448,7 @@ const SalmonStripsPage = () => {
 
           <Section>
             <SectionTitle>
-              <Restaurant /> Directions
+              <RestaurantIcon /> Directions
             </SectionTitle>
             <StepsList>
               <StepItem>
@@ -458,43 +456,43 @@ const SalmonStripsPage = () => {
                 <StepContent>
                   <StepTitle>Cut the salmon into strips</StepTitle>
                   <StepDescription>
-                    Cut the salmon into strips
+                    Cut the fresh salmon fillet into even strips, about 1 inch wide and 4 inches long.
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>2</StepNumber>
                 <StepContent>
-                  <StepTitle>Dip in beaten eggs</StepTitle>
+                  <StepTitle>Prepare the coating</StepTitle>
                   <StepDescription>
-                    Dip in beaten eggs
+                    Beat the eggs in a shallow dish. In another dish, mix breadcrumbs with salt and pepper.
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>3</StepNumber>
                 <StepContent>
-                  <StepTitle>Coat with breadcrumbs</StepTitle>
+                  <StepTitle>Coat the salmon</StepTitle>
                   <StepDescription>
-                    Coat with breadcrumbs
+                    Dip each salmon strip in beaten eggs, then coat with seasoned breadcrumbs.
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>4</StepNumber>
                 <StepContent>
-                  <StepTitle>Fry until golden brown</StepTitle>
+                  <StepTitle>Cook to perfection</StepTitle>
                   <StepDescription>
-                    Fry until golden brown
+                    Heat oil in a pan over medium heat. Cook the strips for 2-3 minutes on each side until golden brown.
                   </StepDescription>
                 </StepContent>
               </StepItem>
               <StepItem>
                 <StepNumber>5</StepNumber>
                 <StepContent>
-                  <StepTitle>Serve with your favorite sauce</StepTitle>
+                  <StepTitle>Serve and enjoy</StepTitle>
                   <StepDescription>
-                    Serve with your favorite sauce
+                    Serve hot with your favorite dipping sauce and Baker&apos;s Inn bread on the side.
                   </StepDescription>
                 </StepContent>
               </StepItem>

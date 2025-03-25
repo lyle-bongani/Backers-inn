@@ -2,6 +2,7 @@
 
 import styled from 'styled-components'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import { 
   Build,
@@ -14,34 +15,52 @@ import {
   VolunteerActivism,
   Print,
   FilterList,
-  Info
+  Info,
+  VerifiedUser,
+  Timer,
+  LocalDining
 } from '@mui/icons-material'
+import { motion } from 'framer-motion'
 
 const KidsContainer = styled.div`
   min-height: 100vh;
-  background: #FAF7F2;
+  background: #FAFAFA;
+  overflow: hidden;
 `
 
 const HeroSection = styled.div`
-  background-color: #2B1B58;
-  padding: 4rem 0;
-  color: white;
-  text-align: center;
   position: relative;
+  height: 70vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFE4E4;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(43, 27, 88, 0.8), rgba(43, 27, 88, 0.8)),
-                url('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
+`
+
+const ContentSection = styled.div`
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+`
+
+const GamesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+`
+
+const GameCard = styled.div`
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
   }
 `
 
@@ -124,16 +143,16 @@ const ActivityImage = styled.div`
 const ActivityContent = styled.div`
   padding: 1.5rem;
 `
-
+  
 const ActivityTitle = styled.h3`
-  font-size: 1.5rem;
-  color: #2B1B58;
+    font-size: 1.5rem;
+    color: #2B1B58;
   margin-bottom: 1rem;
 `
 
 const ActivityDescription = styled.p`
-  color: #666;
-  line-height: 1.6;
+    color: #666;
+    line-height: 1.6;
   margin-bottom: 1rem;
 `
 
@@ -194,7 +213,18 @@ const SafetyTip = styled.div`
   }
 `
 
-const KidsPage = () => {
+const ActivityLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+`
+
+const KidsCornerPage = () => {
   const [activeAge, setActiveAge] = useState('all')
 
   const ageGroups = [
@@ -316,216 +346,74 @@ const KidsPage = () => {
   return (
     <KidsContainer>
       <HeroSection>
+        <Image
+          src="/kids-hero.jpg"
+          alt="Kids Corner"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+        />
         <Container>
-          <Title>Playful Bakers Inn Adventures – No Screen Needed!</Title>
-          <Subtitle>Turn Bakers Inn Treats into Family Fun!</Subtitle>
+          <Title>Welcome to Kids Corner!</Title>
+          <Subtitle>Fun activities and games for young bakers</Subtitle>
         </Container>
       </HeroSection>
 
-      <Container>
+      <ContentSection>
         <AgeFilter>
-          {ageGroups.map(age => (
+          {ageGroups.map(group => (
             <AgeButton
-              key={age.id}
-              $active={activeAge === age.id}
-              onClick={() => setActiveAge(age.id)}
+              key={group.id}
+              $active={activeAge === group.id}
+              onClick={() => setActiveAge(group.id)}
             >
-              {age.name}
+              {group.name}
             </AgeButton>
           ))}
         </AgeFilter>
 
-        <Section>
-          <SectionTitle>
-            <Build /> Creative Play Zone
-          </SectionTitle>
-          <ActivityGrid>
-            {filteredActivities
-              .filter(activity => activity.section === 'creative')
-              .map((activity, index) => (
-                <ActivityCard key={index}>
-                  <ActivityImage>
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </ActivityImage>
-                  <ActivityContent>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-                    <ActivityDescription>{activity.description}</ActivityDescription>
-                    <ProTip>
-                      <Info /> {activity.proTip}
-                    </ProTip>
-                  </ActivityContent>
-                </ActivityCard>
-              ))}
-          </ActivityGrid>
-        </Section>
+        <ActivityGrid>
+          {filteredActivities.map((activity, index) => (
+            <ActivityLink href={`/kids-corner/${activity.section}/${activity.title.toLowerCase().replace(/\s+/g, '-')}`} key={index}>
+              <ActivityCard>
+              <ActivityImage>
+                <Image
+                  src={activity.image}
+                    alt={activity.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              </ActivityImage>
+                <ActivityContent>
+                  <ActivityTitle>{activity.title}</ActivityTitle>
+                  <ActivityDescription>{activity.description}</ActivityDescription>
+                  <ProTip>
+                    <Info />
+                    {activity.proTip}
+                  </ProTip>
+                </ActivityContent>
+            </ActivityCard>
+            </ActivityLink>
+          ))}
+        </ActivityGrid>
+      </ContentSection>
 
-        <Section>
-          <SectionTitle>
-            <OutdoorGrill /> Outdoor Challenges
-          </SectionTitle>
-          <ActivityGrid>
-            {filteredActivities
-              .filter(activity => activity.section === 'outdoor')
-              .map((activity, index) => (
-                <ActivityCard key={index}>
-                  <ActivityImage>
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </ActivityImage>
-                  <ActivityContent>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-                    <ActivityDescription>{activity.description}</ActivityDescription>
-                    <ProTip>
-                      <Info /> {activity.proTip}
-                    </ProTip>
-                  </ActivityContent>
-                </ActivityCard>
-              ))}
-          </ActivityGrid>
-        </Section>
-
-        <Section>
-          <SectionTitle>
-            <School /> Educational Games
-          </SectionTitle>
-          <ActivityGrid>
-            {filteredActivities
-              .filter(activity => activity.section === 'educational')
-              .map((activity, index) => (
-                <ActivityCard key={index}>
-                  <ActivityImage>
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </ActivityImage>
-                  <ActivityContent>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-                    <ActivityDescription>{activity.description}</ActivityDescription>
-                    <ProTip>
-                      <Info /> {activity.proTip}
-                    </ProTip>
-                  </ActivityContent>
-                </ActivityCard>
-              ))}
-          </ActivityGrid>
-        </Section>
-
-        <Section>
-          <SectionTitle>
-            <TheaterComedy /> Storytelling & Roleplay
-          </SectionTitle>
-          <ActivityGrid>
-            {filteredActivities
-              .filter(activity => activity.section === 'storytelling')
-              .map((activity, index) => (
-                <ActivityCard key={index}>
-                  <ActivityImage>
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </ActivityImage>
-                  <ActivityContent>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-                    <ActivityDescription>{activity.description}</ActivityDescription>
-                    <ProTip>
-                      <Info /> {activity.proTip}
-                    </ProTip>
-                  </ActivityContent>
-                </ActivityCard>
-              ))}
-          </ActivityGrid>
-        </Section>
-
-        <Section>
-          <SectionTitle>
-            <Palette /> Craft & Recycling Projects
-          </SectionTitle>
-          <ActivityGrid>
-            {filteredActivities
-              .filter(activity => activity.section === 'craft')
-              .map((activity, index) => (
-                <ActivityCard key={index}>
-                  <ActivityImage>
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </ActivityImage>
-                  <ActivityContent>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-                    <ActivityDescription>{activity.description}</ActivityDescription>
-                    <ProTip>
-                      <Info /> {activity.proTip}
-                    </ProTip>
-                  </ActivityContent>
-                </ActivityCard>
-              ))}
-          </ActivityGrid>
-        </Section>
-
-        <Section>
-          <SectionTitle>
-            <EmojiEvents /> Family Baking Competitions
-          </SectionTitle>
-          <ActivityGrid>
-            {filteredActivities
-              .filter(activity => activity.section === 'baking')
-              .map((activity, index) => (
-                <ActivityCard key={index}>
-                  <ActivityImage>
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </ActivityImage>
-                  <ActivityContent>
-                    <ActivityTitle>{activity.title}</ActivityTitle>
-                    <ActivityDescription>{activity.description}</ActivityDescription>
-                    <ProTip>
-                      <Info /> {activity.proTip}
-                    </ProTip>
-                  </ActivityContent>
-                </ActivityCard>
-              ))}
-          </ActivityGrid>
-        </Section>
-
-        <ParentZone>
-          <SectionTitle>
-            <Info /> Parent Zone
-          </SectionTitle>
-          <SafetyTip>
-            <Info /> Always supervise play with small food pieces.
-          </SafetyTip>
-          <SafetyTip>
-            <Info /> Use allergy-friendly ingredients for edible games.
-          </SafetyTip>
-          <SafetyTip>
-            <Info /> Share photos of gameplay for monthly prizes.
-          </SafetyTip>
-        </ParentZone>
-      </Container>
+      <ParentZone>
+        <SectionTitle>
+          <Info /> Parent&apos;s Corner
+        </SectionTitle>
+        <SafetyTip>
+          <VerifiedUser /> Always supervise children during activities
+        </SafetyTip>
+        <SafetyTip>
+          <Timer /> Set reasonable time limits for online games
+        </SafetyTip>
+        <SafetyTip>
+          <LocalDining /> Ensure proper hand washing before baking activities
+        </SafetyTip>
+      </ParentZone>
     </KidsContainer>
   )
 }
 
-export default KidsPage 
+export default KidsCornerPage 
