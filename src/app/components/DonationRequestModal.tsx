@@ -111,15 +111,15 @@ const DonationRequestModal = ({ isOpen, onClose }: DonationRequestModalProps) =>
         <CloseButton onClick={onClose}>×</CloseButton>
         <Title>Request Product Donations</Title>
         <Description>
-          You can apply for product donations by completing this form, we will contact you should your application be successful. Please bear in mind that we will need at least 3 weeks' notice to the date of your event
+          You can apply for product donations by completing this form, we will contact you should your application be successful. Please bear in mind that we will need at least 3 weeks&apos; notice to the date of your event
         </Description>
         <Form onSubmit={(e) => e.preventDefault()}>
           <Input placeholder="Name of Organisation" />
           <Input placeholder="Name of Contact Person" />
           <Input placeholder="Contact Person Position" />
           <Input placeholder="Organization Address" />
-          <Input placeholder="Contact Person's Telephone" />
-          <Input placeholder="Contact Person's E-mail" />
+          <Input placeholder="Contact Person&apos;s Telephone" />
+          <Input placeholder="Contact Person&apos;s E-mail" />
           <Input type="date" placeholder="Date of Event" />
           <Select>
             <option value="">Intended use of Donations</option>

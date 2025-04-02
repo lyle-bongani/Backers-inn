@@ -166,7 +166,7 @@ const Hero = () => {
               .
             </Title>
             <Description>
-              The freshest sandwiches you can make with Baker's inn soft white loaf.
+              The freshest sandwiches you can make with Baker&apos;s inn soft white loaf.
             </Description>
             <ReadMoreButton href="/products">
               READ MORE
