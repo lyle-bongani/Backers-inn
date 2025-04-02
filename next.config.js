@@ -8,6 +8,8 @@ const nextConfig = {
   },
   images: {
     domains: ['images.unsplash.com'],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
   },
   // Disable ESLint during builds
   eslint: {
@@ -15,6 +17,12 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  poweredByHeader: false,
+  compress: true,
+  generateEtags: true,
+  experimental: {
+    optimizeCss: true,
+  },
 }
 
 module.exports = nextConfig 
