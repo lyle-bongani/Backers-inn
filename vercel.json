@@ -1,4 +1,3 @@
 {
-  "buildCommand": "next build",
-  "ignoreCommand": "next lint || exit 0"
+  "buildCommand": "node build.js"
 } 
