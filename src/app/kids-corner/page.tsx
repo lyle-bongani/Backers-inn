@@ -27,6 +27,17 @@ const HeroSection = styled.div`
   justify-content: center;
   background: #FFE4E4;
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
 `
 
 const ContentSection = styled.div`
@@ -70,6 +81,9 @@ const Title = styled.h1`
   font-size: 3.5rem;
   margin-bottom: 1rem;
   font-weight: 800;
+  color: white;
+  position: relative;
+  z-index: 2;
   
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -82,6 +96,9 @@ const Subtitle = styled.p`
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
+  color: white;
+  position: relative;
+  z-index: 2;
 `
 
 const Section = styled.section`
@@ -118,6 +135,9 @@ const ActivityCard = styled.div`
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -132,6 +152,9 @@ const ActivityImage = styled.div`
 
 const ActivityContent = styled.div`
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `
   
 const ActivityTitle = styled.h3`

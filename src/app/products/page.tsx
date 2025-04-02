@@ -44,7 +44,7 @@ const ProductsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   max-width: 1200px;
-  margin: -100px auto 4rem;
+  margin: 2rem auto 4rem;
   padding: 0 2rem;
   position: relative;
   z-index: 10;
@@ -248,15 +248,22 @@ const StoreLocator = styled.div`
 
 const SearchBar = styled.input`
   width: 100%;
-  padding: 1rem;
-  border: 2px solid #E5E7EB;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  background: white;
+  color: #2B1B58;
+  transition: all 0.3s;
 
   &:focus {
     outline: none;
     border-color: #C19A5B;
+    box-shadow: 0 0 0 2px rgba(193, 154, 91, 0.1);
+  }
+
+  &::placeholder {
+    color: #999;
   }
 `
 

@@ -1,9 +1,17 @@
 const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 
 try {
-  // Install dependencies
-  console.log('Installing dependencies...');
-  execSync('npm install', { stdio: 'inherit' });
+  // Clean install dependencies
+  console.log('Cleaning and installing dependencies...');
+  if (fs.existsSync(path.join(process.cwd(), 'node_modules'))) {
+    execSync('rm -rf node_modules', { stdio: 'inherit' });
+  }
+  if (fs.existsSync(path.join(process.cwd(), '.next'))) {
+    execSync('rm -rf .next', { stdio: 'inherit' });
+  }
+  execSync('npm install --legacy-peer-deps', { stdio: 'inherit' });
 
   // Run build with ESLint disabled
   console.log('Building the application with ESLint disabled...');

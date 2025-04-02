@@ -3,7 +3,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { 
   AccessTime,
   People,
@@ -87,15 +87,23 @@ const HeroSubtext = styled.p`
   }
 `
 
-const RecipeNav = styled.nav`
+const NavContainer = styled.div`
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease;
+`
+
+const RecipeNav = styled.nav<{ $isSticky: boolean }>`
   background: white;
   padding: 1rem 0;
-  position: sticky;
-  top: 0;
+  position: ${props => props.$isSticky ? 'fixed' : 'relative'};
+  top: ${props => props.$isSticky ? '0' : 'auto'};
   width: 100%;
   z-index: 90;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+  box-shadow: ${props => props.$isSticky ? '0 2px 10px rgba(0,0,0,0.1)' : 'none'};
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  will-change: transform;
 `
 
 const RecipeNavContainer = styled.div`
@@ -167,7 +175,8 @@ const CarouselTrack = styled.div`
   display: flex;
   gap: 2rem;
   margin: 2rem 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
+  width: 100%;
 `
 
 const CarouselCard = styled.div`
@@ -177,8 +186,12 @@ const CarouselCard = styled.div`
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 
+  @media (max-width: 1024px) {
+    flex: 0 0 calc(50% - 1rem);
+  }
+
   @media (max-width: 768px) {
-    flex: 0 0 calc(100% - 2rem);
+    flex: 0 0 100%;
   }
 `
 
@@ -692,17 +705,24 @@ const FilterTag = styled.button<{ $active?: boolean }>`
   }
 `
 
-const SearchInput = styled.input`
+const SearchBar = styled.input`
   width: 100%;
-  padding: 1rem;
-  border: 2px solid #E5E7EB;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
   font-size: 1rem;
-  margin-bottom: 2rem;
+  background: white;
+  color: #2B1B58;
+  transition: all 0.3s;
 
   &:focus {
     outline: none;
     border-color: #C19A5B;
+    box-shadow: 0 0 0 2px rgba(193, 154, 91, 0.1);
+  }
+
+  &::placeholder {
+    color: #999;
   }
 `
 
@@ -818,6 +838,8 @@ const RecipesPage = () => {
   const [activeFilters, setActiveFilters] = useState<string[]>([])
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+  const [isNavSticky, setIsNavSticky] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
 
   const categories = [
     { id: 'quick', name: 'Quick Snacks', icon: <Fastfood /> },
@@ -851,6 +873,30 @@ const RecipesPage = () => {
       prepTime: '15 mins',
       difficulty: 'Easy',
       description: 'Colorful and nutritious sandwiches kids will love!'
+    },
+    {
+      id: 4,
+      title: 'Bread Pudding Delight',
+      image: 'https://images.unsplash.com/photo-1485921325833-c519f76c4927?q=80&w=2070&auto=format&fit=crop',
+      prepTime: '45 mins',
+      difficulty: 'Medium',
+      description: 'A classic dessert with a Bakers Inn twist.'
+    },
+    {
+      id: 5,
+      title: 'Savory French Toast',
+      image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=2070&auto=format&fit=crop',
+      prepTime: '25 mins',
+      difficulty: 'Easy',
+      description: 'Perfect for brunch with friends and family.'
+    },
+    {
+      id: 6,
+      title: 'Bread Crumb Chicken',
+      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=2070&auto=format&fit=crop',
+      prepTime: '40 mins',
+      difficulty: 'Medium',
+      description: 'Crispy chicken coated with our special bread crumbs.'
     }
   ]
 
@@ -1001,16 +1047,29 @@ const RecipesPage = () => {
   ]
 
   const handlePrevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(prev => prev - 1)
+    if (currentSlide === 0) {
+      setCurrentSlide(featuredRecipes.length - 1);
+    } else {
+      setCurrentSlide(prev => prev - 1);
     }
   }
 
   const handleNextSlide = () => {
-    if (currentSlide < featuredRecipes.length - 1) {
-      setCurrentSlide(prev => prev + 1)
+    if (currentSlide === featuredRecipes.length - 1) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(prev => prev + 1);
     }
   }
+
+  // Add auto-scroll functionality
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNextSlide();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, [currentSlide]);
 
   const toggleFilter = (filter: string) => {
     setActiveFilters(prev => 
@@ -1023,6 +1082,27 @@ const RecipesPage = () => {
   const toggleFAQ = (index: number) => {
     setExpandedFAQ(prev => prev === index ? null : index)
   }
+
+  // Update scroll handler for smoother transitions
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (navRef.current) {
+            const navBottom = navRef.current.getBoundingClientRect().bottom;
+            setIsNavSticky(navBottom <= 0);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <RecipesContainer>
@@ -1040,49 +1120,75 @@ const RecipesPage = () => {
         </HeroContent>
       </HeroSection>
 
-      <RecipeNav>
-        <RecipeNavContainer>
-          {categories.map(category => (
-            <RecipeNavLink 
-              key={category.id}
-              href={`#${category.id}`}
-              $active={activeCategory === category.id}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveCategory(category.id);
-                const element = document.getElementById(category.id);
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              {category.icon} {category.name}
-            </RecipeNavLink>
-          ))}
-        </RecipeNavContainer>
-      </RecipeNav>
+      <NavContainer ref={navRef}>
+        <RecipeNav $isSticky={isNavSticky}>
+          <RecipeNavContainer>
+            {categories.map(category => (
+              <RecipeNavLink 
+                key={category.id}
+                href={`#${category.id}`}
+                $active={activeCategory === category.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveCategory(category.id);
+                  const element = document.getElementById(category.id);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                {category.icon} {category.name}
+              </RecipeNavLink>
+            ))}
+          </RecipeNavContainer>
+        </RecipeNav>
+      </NavContainer>
 
       <CarouselSection id="quick">
         <CarouselContainer>
           <CarouselTitle>Recipe of the Month</CarouselTitle>
           <CarouselTrack 
             ref={carouselRef}
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            style={{ transform: `translateX(-${currentSlide * 33.333}%)` }}
           >
             {featuredRecipes.map(recipe => (
               <CarouselCard key={recipe.id}>
                 <CarouselImage>
-                <Image
-                  src={recipe.image}
+                  <Image
+                    src={recipe.image}
                     alt={recipe.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </CarouselImage>
                 <CarouselInfo>
                   <h3>{recipe.title}</h3>
-                <p>{recipe.description}</p>
-                <RecipeStats>
+                  <p>{recipe.description}</p>
+                  <RecipeStats>
+                    <span><AccessTime /> {recipe.prepTime}</span>
+                    <span><Star /> {recipe.difficulty}</span>
+                  </RecipeStats>
+                  <GetRecipeButton href={`/recipes/${recipe.id}`}>
+                    Get the Recipe
+                  </GetRecipeButton>
+                </CarouselInfo>
+              </CarouselCard>
+            ))}
+            {/* Duplicate first few cards for infinite scroll effect */}
+            {featuredRecipes.slice(0, 3).map(recipe => (
+              <CarouselCard key={`${recipe.id}-duplicate`}>
+                <CarouselImage>
+                  <Image
+                    src={recipe.image}
+                    alt={recipe.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </CarouselImage>
+                <CarouselInfo>
+                  <h3>{recipe.title}</h3>
+                  <p>{recipe.description}</p>
+                  <RecipeStats>
                     <span><AccessTime /> {recipe.prepTime}</span>
                     <span><Star /> {recipe.difficulty}</span>
                   </RecipeStats>
@@ -1300,7 +1406,7 @@ const RecipesPage = () => {
 
       <FilterSection>
         <CarouselTitle>Find Your Perfect Recipe</CarouselTitle>
-        <SearchInput 
+        <SearchBar 
           type="text" 
           placeholder="Search recipes by ingredient..."
         />
